@@ -22,3 +22,6 @@ def about(request):
 
 def contact(request):
     return render(request, "hello/contact.html")
+
+def login(request):
+    return render(request, "hello/login.html")
