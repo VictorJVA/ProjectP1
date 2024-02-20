@@ -51,4 +51,3 @@ class File(models.Model):
     file= models.FileField(upload_to ='medical/file/')
 
 
-
