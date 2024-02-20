@@ -1,3 +1,51 @@
 from django.db import models
 
 # Create your models here.
+class Log_in(models.Model):
+    log_id=models.IntegerField(max_length=None,primary_key=True)
+    user_name=models.CharField(max_length=255,unique=True)
+    password= models.CharField(max_length=255)
+class Client(models.Model):
+    client_id= models.IntegerField(max_length=None,primary_key=True)
+    log_id= models.ForeignKey('Log_in',on_delete=models.CASCADE,null=False)
+    name= models.CharField(max_length=50)
+class Vet(models.Model):
+    vet_id=models.IntegerField(max_length=None,primary_key=True)
+    log_id=models.ForeignKey('Log_in',on_delete=models.CASCADE,null=False)
+    name= models.CharField(max_length=50)
+    country_intials=models.CharField(max_length=4)
+    phone=models.CharField(max_length=15)
+class Pets(models.Model):
+    pet_id= models.IntegerField(max_length= None,primary_key=True)
+    client_id= models.ForeignKey('Client',on_delete=models.CASCADE,null=False)
+    name=models.CharField(max_length=100, null=False)
+    species=models.CharField(max_length=100, null=False)
+    race=models.CharField(max_length=100, null= False)
+    birth_date=models.DateField(max_length=99)
+    gender= models.BooleanField()
+class Medical_history(models.Model):
+    Medical_history_id= models.IntegerField(max_length=None,primary_key=True)
+    pet_id=models.ForeignKey('Pets',on_delete=models.CASCADE,null=False)
+class Phone_Owner(models.Model):
+    client_id= models.ForeignKey('Client',on_delete=models.CASCADE,null=False)
+    country_intials=models.CharField(max_length=4)
+    phone=models.CharField(max_length=15)
+class Appointment(models.Model):
+    appointment_id=models.IntegerField(max_length=None,primary_key=True)
+    pet_id= models.ForeignKey('Pets',on_delete=models.CASCADE,null=False)
+    vet_id= models.ForeignKey('Vet',on_delete=models.CASCADE,null=False)
+    date=models.DateField()
+    time=models.TimeField(auto_now=False, auto_now_add=False)
+    reason_appointment=models.CharField(max_length=200,null=True)
+class Report(models.Model):
+    report_id=models.IntegerField(max_length=None,primary_key=True)
+    appointement_id=models.ForeignKey('Appointment',on_delete=models.CASCADE,null=False)
+    medical_history_id=models.ForeignKey('Medical_history',on_delete=models.CASCADE,null=False)
+    test_findings=models.CharField(max_length=200, null=True)
+    diagnosis=models.CharField(max_length=200, null=True)
+    prescribed_treatment=models.CharField(max_length=200, null=True)
+    recommendations=models.CharField(max_length=200, null=True)
+    additional_note=models.CharField(max_length=200, null=True)
+
+
+
