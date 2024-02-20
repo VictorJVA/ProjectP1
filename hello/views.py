@@ -22,3 +22,5 @@ def about(request):
 
 def contact(request):
     return render(request, "hello/contact.html")
+def test1(request):
+    return render(request,"travela-1.0.0/tour.html")
