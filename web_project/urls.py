@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import include, path
 from hello import views as views
 
+
 urlpatterns = [
     path("", views.home, name="home"),
     path("hello/<name>", views.hello_there, name="hello_there"),
