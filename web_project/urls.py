@@ -19,6 +19,8 @@ from django.contrib import admin
 from django.urls import include, path
 from hello import views as views
 
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path("", views.home, name="home"),
@@ -29,4 +31,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
 ]
-urlpatterns += staticfiles_urlpatterns()
+urlpatterns += staticfiles_urlpatterns(settings.File_url,document_root=settings.File_root)
