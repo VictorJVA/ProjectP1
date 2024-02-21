@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetPal</title>
+    <link rel="stylesheet" href="../../static/css/normalize.css" />
+    <link rel="stylesheet" href="../../static/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Appointment</h1>
+      <nav class="main-nav">
+        <a href="/">Home</a>
+      </nav>
+    </header>
+
+    <div class="conteiner-appointment">
+      <div class="form">
+        <form>
+          <fieldset>
+            <legend>initial information</legend>
+            <div class="campo">
+              <label>Appointment Id:</label>  
+              <input value="1231231331"  type="number" readonly>
+              <label>Veterinarian Id:</label>
+              <input value="veterinarian_id"  type="text" readonly>
+            </div>
+            <div class="campo">
+              <label>Date:</label>
+              <input type="date" readonly>
+            </div>
+            <div class="campo">
+              <label>Hour:</label>
+              <input type="time" readonly>
+            </div>
+            <div class="campo inline">
+              <label>priority appointment:</label>
+                <input id="option1" type="radio" name="priority">
+                <label for="option1">Yes</label>
+                <input id="option2" type="radio" name="priority" checked>
+                <label for="option2">No</label>
+            </div>
+            <div class="campo">
+              <label for="reason_appointment">Reason for appointment:</label>
+              <textarea
+                id="reason_appointment"
+                name="reason"
+                rows="5" 
+                cols="80"
+                required
+                placeholder="Write Reason Appointment"
+              ></textarea
+              ><br/>
+            </div>
+
+          </fieldset>
+      </div>
+      <div class="pet-profile">
+        {% load static %}
+        <img src="{% static 'img/collie.jpg' %}" alt="pet photo" />
+        <p>Pet name</p>
+        <p>pet Id</p>
+        <p>Race</p>
+        <p>Owner</p>
+      </div>
+    </div>
+    <div class="form-2">
+          <fieldset>
+            <legend>About the appointment</legend>
+            <div class="campo">
+              <LABEL for="test_findings">Test findings: </LABEL>
+              <textarea
+                id="test_findings"
+                name="test"
+                rows="5"
+                cols="120"
+                required
+              ></textarea
+              ><br />
+            </div>
+            
+            <div class="campo">
+              <label for="diagnosis">Diagnosis: </label>
+              <textarea
+                id="diagnosis"
+                name="diagnosis"
+                rows="5"
+                cols="120"
+                required
+              ></textarea
+              ><br />
+            </div>
+            <div class="campo">
+              <label for="prescribed_treatment">Prescribed treatment:</label>
+              <textarea
+                id="prescribed_treatment"
+                name="prescribed_treatment"
+                rows="5"
+                cols="120"
+                required
+              ></textarea
+              ><br />
+            </div>
+            <div class="campo">
+              <label for="aditional_recomend">aditional recomend:</label>
+              <textarea
+                id="aditional_recomend"
+                name="aditional_recomend"
+                rows="5"
+                cols="120"
+                required
+              ></textarea
+              ><br />
+            </div class="campo">
+            <div class="form-2 block">
+            <label>aditional notes: </label>
+              <textarea
+                id="aditional_notes"
+                name="aditional_notes"
+                rows="3"
+                cols="40"
+                required
+              ></textarea
+              ><br />
+            </div>
+            <div class="campo">
+              <label for="file">files: </label>
+              <input id="file" type="file">
+            </div>
+          </fieldset>
+          <input class="btn-save" type="submit" value="Save" />
+        </form>
+  </div>
+  </body>
+  <footer>
+    <p>&copy; 2024</p>
+  </footer>
+</html>
