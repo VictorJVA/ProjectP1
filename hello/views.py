@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.utils.timezone import datetime
 # Create your views here.
 from django.http import HttpResponse
-
+from .models import Report,File,Appointment,Client,Vet,Log_in
 def home(request):
     return render(request, "hello/home.html")
 
@@ -22,10 +22,13 @@ def about(request):
 
 def contact(request):
     return render(request, "hello/contact.html")
+def test1(request):
+    return render(request,"travela-1.0.0/tour.html")
 
-def login(request):
-    return render(request, "hello/login.html")
-
-
-def appointment(request):
-    return render(request, "hello/appointment.html")
+def backtest(request):
+    searchAppoint= request.GET.get('searchAppointment')
+    if(searchAppoint):
+        report = Report.objects.filter(appointement_id=searchAppoint)
+    else:
+        report=None
+    return render(request,'smth.html',{'searchAppoint':searchAppoint,'report':report})
