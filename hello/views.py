@@ -33,3 +33,7 @@ def menuVet(request):
 
 def login(request):
     return render(request, "hello/login.html")
+
+
+def appointment(request):
+    return render(request, "hello/appointment.html")
