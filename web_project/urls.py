@@ -17,12 +17,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from hello import views as views
+
+from django.conf.urls.static import static
+from django.conf import settings
 
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path("", include("hello.urls")),
-    path('admin/', admin.site.urls)
+    path("", views.home, name="home"),
+    path("hello/<name>", views.hello_there, name="hello_there"),
+    path("about/", views.about, name="about"),
+    path("contact/", views.contact, name="contact"),
+    path("tour/",views.test1,name="tour"),
+    path('admin/', admin.site.urls),
+    
 ]
 urlpatterns += staticfiles_urlpatterns(settings.File_url,document_root=settings.File_root)
