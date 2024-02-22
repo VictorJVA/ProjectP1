@@ -4,6 +4,8 @@ from django.utils.timezone import datetime
 from django.http import HttpResponse
 from .models import Report,File,Appointment,Client,Vet,Log_in
 from django.db.models import Max
+from .models import Report,File,Appointment,Client,Vet,Log_in
+from django.db.models import Max
 def home(request):
     return render(request, "hello/home.html")
 
