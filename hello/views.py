@@ -24,3 +24,9 @@ def contact(request):
     return render(request, "hello/contact.html")
 def test1(request):
     return render(request,"travela-1.0.0/tour.html")
+
+def menuUser(request):
+    return render(request,"menu-bootstrap/a/menuUser.html")
+
+def menuVet(request):
+    return render(request,"menu-bootstrap/a/menuVet.html")
