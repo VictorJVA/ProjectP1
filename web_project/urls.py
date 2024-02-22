@@ -1,4 +1,6 @@
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+import os
+BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 """
 URL configuration for web_project project.
 
@@ -22,16 +24,13 @@ from hello import views as views
 from django.conf.urls.static import static
 from django.conf import settings
 
-from django.conf.urls.static import static
-from django.conf import settings
-
 urlpatterns = [
     path("", views.home, name="home"),
     path("hello/<name>", views.hello_there, name="hello_there"),
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),
-    path("tour/",views.test1,name="tour"),
     path('admin/', admin.site.urls),
-    
+    path('appoint/',views.backtest,name="appointment"),
+    path("login/", views.login)
 ]
-urlpatterns += staticfiles_urlpatterns(settings.File_url,document_root=settings.File_root)
+urlpatterns += static('/report/',document_root=os.path.join(BASE_DIR,'report'))

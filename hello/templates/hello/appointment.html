@@ -22,17 +22,43 @@
             <legend>initial information</legend>
             <div class="campo">
               <label>Appointment Id:</label>  
-              <input value="1231231331"  type="number" readonly>
+              {%if report %}
+              
+              <input value={{appointment.appointment_id}}  type="number" readonly>
+              
+              {%else%}
+              
+              <input class="form-control"  type="number" name="searchAppointment">
+
+              {%endif%}
+              
               <label>Veterinarian Id:</label>
-              <input value="veterinarian_id"  type="text" readonly>
+
+              {%if report %}
+              
+              <input value={{vet.vet_id}}  type="text" readonly>
+              
+              {%else%}
+              
+              <input value="veterinarian_id"  type="text" name="searchVet">
+              
+              {%endif%}
             </div>
             <div class="campo">
               <label>Date:</label>
-              <input type="date" readonly>
+              {%if report %}
+              <input value={{appointment.date}} readonly>
+              {%else%}
+              <input type="date" name="searchDate">
+              {%endif%}
             </div>
             <div class="campo">
               <label>Hour:</label>
-              <input type="time" readonly>
+              {%if report %}
+              <input value={{appointment.time}} readonly>
+              {%else%}
+              <input type="time">
+              {%endif%}
             </div>
             <div class="campo inline">
               <label>priority appointment:</label>
@@ -42,16 +68,27 @@
                 <label for="option2">No</label>
             </div>
             <div class="campo">
+
               <label for="reason_appointment">Reason for appointment:</label>
+              {%if report %}
               <textarea
                 id="reason_appointment"
                 name="reason"
                 rows="5" 
                 cols="80"
-                required
+                placeholder={{appointment.reason_appointment}}
+                readonly
+              ></textarea><br/>
+              {%else%}
+              <textarea
+                id="reason_appointment"
+                name="reason"
+                rows="5" 
+                cols="80"
                 placeholder="Write Reason Appointment"
-              ></textarea
-              ><br/>
+              ></textarea><br/>
+              {%endif%}
+              
             </div>
 
           </fieldset>
@@ -59,78 +96,161 @@
       <div class="pet-profile">
         {% load static %}
         <img src="{% static 'img/collie.jpg' %}" alt="pet photo" />
+        {%if report %}
+        <p>Pet name: {{pet.name}}</p>
+        {%else%}
         <p>Pet name</p>
-        <p>pet Id</p>
+        {%endif%}
+        {%if report %}
+        <p>Allergies: None</p>
+        {%else%}
+        <p>Allergies </p>
+        {%endif%}
+        {%if report %}
+        <p>Pet id: {{pet.pet_id}}</p>
+        {%else%}
+        <p>Pet id</p>
+        {%endif%}
+        {%if report %}
+        <p>Race: {{pet.race}}</p>
+        {%else%}
         <p>Race</p>
+        {%endif%}
+        {%if report %}
+        <p>Owner: {{pet.client_id.name}}</p>
+        {%else%}
         <p>Owner</p>
+        {%endif%}
       </div>
     </div>
     <div class="form-2">
           <fieldset>
             <legend>About the appointment</legend>
             <div class="campo">
+              {%if report %}
               <LABEL for="test_findings">Test findings: </LABEL>
               <textarea
                 id="test_findings"
                 name="test"
                 rows="5"
                 cols="120"
-                required
+                placeholder={{report.test_findings}}
+                readonly
               ></textarea
               ><br />
+              {% else %}
+              <LABEL for="test_findings">Test findings: </LABEL>
+              <textarea
+                id="test_findings"
+                name="test"
+                rows="5"
+                cols="120"
+              ></textarea
+              ><br />
+              {%endif%}
             </div>
             
             <div class="campo">
+              {%if report %}
               <label for="diagnosis">Diagnosis: </label>
               <textarea
                 id="diagnosis"
                 name="diagnosis"
                 rows="5"
                 cols="120"
-                required
+                placeholder={{report.diagnosis}}
+                readonly
               ></textarea
               ><br />
+              {% else %}
+              <label for="diagnosis">Diagnosis: </label>
+              <textarea
+                id="diagnosis"
+                name="diagnosis"
+                rows="5"
+                cols="120"
+              ></textarea
+              ><br />
+              {%endif%}
             </div>
             <div class="campo">
+              {%if report %}
               <label for="prescribed_treatment">Prescribed treatment:</label>
               <textarea
                 id="prescribed_treatment"
                 name="prescribed_treatment"
                 rows="5"
                 cols="120"
-                required
+                placeholder={{report.prescribed_treatment}}
+                readonly
               ></textarea
               ><br />
+              {% else %}
+              <label for="prescribed_treatment">Prescribed treatment:</label>
+              <textarea
+                id="prescribed_treatment"
+                name="prescribed_treatment"
+                rows="5"
+                cols="120"
+              ></textarea
+              ><br />
+              {%endif%}
             </div>
             <div class="campo">
+              {%if report %}
               <label for="aditional_recomend">aditional recomend:</label>
               <textarea
                 id="aditional_recomend"
                 name="aditional_recomend"
                 rows="5"
                 cols="120"
-                required
+                readonly
+                placeholder={{record.recommendations}}
               ></textarea
               ><br />
+              {% else %}
+              <label for="aditional_recomend">aditional recomend:</label>
+              <textarea
+                id="aditional_recomend"
+                name="aditional_recomend"
+                rows="5"
+                cols="120"
+              ></textarea
+              ><br />
+              {%endif%}
             </div class="campo">
             <div class="form-2 block">
+              {%if report %}
             <label>aditional notes: </label>
               <textarea
                 id="aditional_notes"
                 name="aditional_notes"
                 rows="3"
                 cols="40"
-                required
+                readonly
+                placeholder={{report.additional_note}}
               ></textarea
               ><br />
+              {% else %}
+              <label>aditional notes: </label>
+              <textarea
+                id="aditional_notes"
+                name="aditional_notes"
+                rows="3"
+                cols="40"
+              ></textarea
+              ><br />
+              {%endif%}
             </div>
             <div class="campo">
               <label for="file">files: </label>
               <input id="file" type="file">
             </div>
           </fieldset>
-          <input class="btn-save" type="submit" value="Save" />
+          <input class="btn-save" type="submit" value="Submit" />
         </form>
+        
+
   </div>
   </body>
   <footer>
