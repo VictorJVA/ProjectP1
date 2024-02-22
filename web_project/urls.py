@@ -2,7 +2,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 import os
 BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 import os
-BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 """
 URL configuration for web_project project.
 
@@ -38,9 +37,7 @@ urlpatterns = [
     path("menuUser/",views.menuUser,name="menuUser"),
     path("menuVet/",views.menuVet,name="menuVet"),
     path('appoint/',views.backtest,name="appointment"),
-    path("login/", views.login)
-    path('appoint/',views.backtest,name="appointment"),
-    path("login/", views.login)
+    path("login/", views.login),
 ]
 urlpatterns += static('/report/',document_root=os.path.join(BASE_DIR,'report'))
 
