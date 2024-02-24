@@ -38,7 +38,10 @@ urlpatterns = [
     path("menuVet/",views.menuVet,name="menuVet"),
     path('appoint/',views.backtest,name="appointment"),
     path("login/", views.login),
+    path("appointmentView/", views.appointmentView, name="appointmentView"),
+    path("appointmentCreate/", views.appointmentCreate,name ="appointmentCreate"),
+    path("rateVet/", views.rateVet, name = "rateVet"),
+    path("",views.viewPets,name)
 ]
-urlpatterns += static('/report/',document_root=os.path.join(BASE_DIR,'report'))
 
 urlpatterns += static('/report/',document_root=os.path.join(BASE_DIR,'report'))

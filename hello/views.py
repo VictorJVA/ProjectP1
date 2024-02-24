@@ -82,3 +82,17 @@ def backtest(request):
         'appointment': appointment,
         'pet': pet
     })
+def registerPet(request):
+    return render(request,'hello/registerPet.html')
+def appointmentCreate(request):
+    return render(request,'hello/appointmentCreate.html')
+def appointmentView(request):
+    return render(request, 'hello/appointmentCreate.html')
+def rateVet(request):
+    return render(request, 'hello/rateVet.html')
+def registerPet(request):
+    return render(request, 'hello/registerPet.html')
+def viewPets(request):
+    return render(request,'hello/viewPets.html')
+def viewVets(request):
+    return render(request, 'hello/viewVets.html')
