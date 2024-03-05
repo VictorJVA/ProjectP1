@@ -37,6 +37,7 @@ urlpatterns = [
     path("menuUser/",views.menuUser,name="menuUser"),
     path("menuVet/",views.menuVet,name="menuVet"),
     path('appoint/<appointment>/',views.backtest,name="appointment"),
+    path('appoint/<appointment>/',views.backtest,name="appointment"),
     path("login/", views.login),
     path("appointmentView/", views.appointmentView, name="appointmentView"),
     path("appointmentCreate/", views.appointmentCreate,name ="appointmentCreate"),
