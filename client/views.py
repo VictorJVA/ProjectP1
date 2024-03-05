@@ -1,3 +1,13 @@
 from django.shortcuts import render
+from .models import Report,File,Appointment,Client,Vet,Log_in
+from django.shortcuts import render, redirect
 
-# Create your views here.
+def homeClient(request):
+    return render(request, 'homeClient.html')
+
+def registerPet(request):
+    return render(request, 'registerPet.html')
+
+def rateVet(request):
+    return render(request, 'rateVet.html')
+
