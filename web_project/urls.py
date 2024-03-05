@@ -25,18 +25,12 @@ from hello import views as views
 from django.conf.urls.static import static
 from django.conf import settings
 
-from django.conf.urls.static import static
-from django.conf import settings
-
 urlpatterns = [
     path("", views.home, name="home"),
     path("hello/<name>", views.hello_there, name="hello_there"),
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),
     path('admin/', admin.site.urls),
-    path("menuUser/",views.menuUser,name="menuUser"),
-    path("menuVet/",views.menuVet,name="menuVet"),
-    path('appoint/<appointment>/',views.backtest,name="appointment"),
     path('appoint/<appointment>/',views.backtest,name="appointment"),
     path("login/", views.login),
     path("appointmentView/", views.appointmentView, name="appointmentView"),
