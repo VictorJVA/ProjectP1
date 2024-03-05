@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../static/css/style.css" />
   </head>
   <body>
+    {% csrf_token %}
     <header>
       <h1>Appointment</h1>
       <nav class="main-nav">
@@ -24,7 +25,7 @@
               <label>Appointment Id:</label>  
               {%if report %}
               
-              <input value={{appointment.appointment_id}}  type="number" readonly>
+              <input value={{appointment.appointment_id}}  type="number" name="searchAppointment" readonly>
               
               {%else%}
               
@@ -47,7 +48,7 @@
             <div class="campo">
               <label>Date:</label>
               {%if report %}
-              <input value={{appointment.date}} readonly>
+              <input value={{appointment.date}}>
               {%else%}
               <input type="date" name="searchDate">
               {%endif%}
@@ -55,7 +56,7 @@
             <div class="campo">
               <label>Hour:</label>
               {%if report %}
-              <input value={{appointment.time}} readonly>
+              <input value={{appointment.time}}>
               {%else%}
               <input type="time">
               {%endif%}
@@ -77,8 +78,7 @@
                 rows="5" 
                 cols="80"
                 placeholder={{appointment.reason_appointment}}
-                readonly
-              ></textarea><br/>
+              >{{appointment.reason_appointment}}</textarea><br/>
               {%else%}
               <textarea
                 id="reason_appointment"
@@ -102,7 +102,10 @@
         <p>Pet name</p>
         {%endif%}
         {%if report %}
-        <p>Allergies: None</p>
+
+        {%for i in allergies%}
+        <p>Allergies: {{pet.allergies}}</p>
+        
         {%else%}
         <p>Allergies </p>
         {%endif%}
@@ -135,8 +138,7 @@
                 rows="5"
                 cols="120"
                 placeholder={{report.test_findings}}
-                readonly
-              ></textarea
+              >{{report.test_findings}}</textarea
               ><br />
               {% else %}
               <LABEL for="test_findings">Test findings: </LABEL>
@@ -159,8 +161,7 @@
                 rows="5"
                 cols="120"
                 placeholder={{report.diagnosis}}
-                readonly
-              ></textarea
+              >{{report.diagnosis}}</textarea
               ><br />
               {% else %}
               <label for="diagnosis">Diagnosis: </label>
@@ -182,8 +183,7 @@
                 rows="5"
                 cols="120"
                 placeholder={{report.prescribed_treatment}}
-                readonly
-              ></textarea
+              >{{report.prescribed_treatment}}</textarea
               ><br />
               {% else %}
               <label for="prescribed_treatment">Prescribed treatment:</label>
@@ -204,9 +204,8 @@
                 name="aditional_recomend"
                 rows="5"
                 cols="120"
-                readonly
-                placeholder={{record.recommendations}}
-              ></textarea
+                placeholder={{report.recommendations}}
+              >{{record.recommendations}}</textarea
               ><br />
               {% else %}
               <label for="aditional_recomend">aditional recomend:</label>
@@ -227,9 +226,8 @@
                 name="aditional_notes"
                 rows="3"
                 cols="40"
-                readonly
                 placeholder={{report.additional_note}}
-              ></textarea
+              >{{report.additional_note}}</textarea
               ><br />
               {% else %}
               <label>aditional notes: </label>
@@ -247,10 +245,18 @@
               <input id="file" type="file">
             </div>
           </fieldset>
-          <input class="btn-save" type="submit" value="Submit" />
+          <label>Enter update reason: </label>
+            <textarea
+              id="Updates"
+              name="checkUpdate"
+              rows="3"
+              cols="40"
+            ></textarea
+            ><br />
+            <form action="{% url 'save'%}">
+          <input id='myButton'class="btn-save" type='submit' name="Save" value="Save" />
         </form>
-        
-
+        </form>
   </div>
   </body>
   <footer>

@@ -23,6 +23,7 @@ class Pets(models.Model):
     race=models.CharField(max_length=100, null= False)
     birth_date=models.DateField(max_length=99)
     gender= models.BooleanField()
+    allergies=models.CharField(max_length=100, null= False)
 class Medical_history(models.Model):
     Medical_history_id= models.IntegerField(max_length=None,primary_key=True)
     pet_id=models.ForeignKey('Pets',on_delete=models.CASCADE,null=False)
@@ -46,8 +47,15 @@ class Report(models.Model):
     prescribed_treatment=models.CharField(max_length=200, null=True)
     recommendations=models.CharField(max_length=200, null=True)
     additional_note=models.CharField(max_length=200, null=True)
-class File(models.Model):
+    update_note=models.CharField(max_length=100, null=False)
+    date_created = models.DateField(auto_now_add=True)
+class File(models.Model):    
     report_id=models.ForeignKey('Report',on_delete=models.CASCADE,null=False)
     file= models.FileField(upload_to ='medical/file/')
-
-
+class Vaccination(models.Model):
+    vaccination_id=models.IntegerField(max_length=None,primary_key=True)
+    medical_history_id=models.ForeignKey('Medical_history',on_delete=models.CASCADE,null=False)
+    vaccine=models.ForeignKey('Vaccines',on_delete=models.CASCADE,null=False)
+class Vaccines(models.Model):
+    vaccine_id=models.IntegerField(max_length=None,primary_key=True)
+    vaccine_name= models.CharField(max_length=100, null=True)

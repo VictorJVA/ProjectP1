@@ -1,9 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils.timezone import datetime
 # Create your views here.
 from django.http import HttpResponse
-from .models import Report,File,Appointment,Client,Vet,Log_in
-from django.db.models import Max
 from .models import Report,File,Appointment,Client,Vet,Log_in
 from django.db.models import Max
 def home(request):
@@ -41,53 +39,47 @@ def login(request):
 def appointment(request):
     return render(request, "hello/appointment.html")
 
-def backtest(request):
-    searchAppointment = request.GET.get('searchAppointment')
-    searchVet = None
+def backtest(request, appointment):
+    searchAppointment = int(appointment)
+    checkupdate= request.GET.get('checkUpdate')
     files = None
     vet = None
     appointment = None
     pet = None
     report = None
-    
-    if request.method == 'GET' and searchAppointment:
-        try:
-            report = Report.objects.get(appointement_id=searchAppointment)
-        except Report.DoesNotExist:
-            # If no report exists, generate a report ID
-            report_id = Report.objects.aggregate(max_report_id=Max('report_id'))['max_report_id']
-            report_id = report_id + 1 if report_id is not None else 1
-            report = Report.objects.create(report_id=report_id, appointement_id=searchAppointment)
-            #report.save()
-        
-        # Fetch additional details
-        searchVet = request.GET.get('searchVet')
+    priority=None
+    if searchAppointment:
+        report = Report.objects.filter(appointement_id=searchAppointment).order_by('-report_id')[0]
         files = File.objects.filter(report_id=report.report_id)
         vet = report.appointement_id.vet_id
         appointment = report.appointement_id
         pet = appointment.pet_id
-    
-    elif request.method == 'GET':
-        max_appointment_id = Appointment.objects.aggregate(max_appointment_id=Max('appointment_id'))['max_appointment_id']
-        max_appointment_id = max_appointment_id + 1 if max_appointment_id is not None else 1
-        appointment = Appointment(appointment_id=max_appointment_id)
-        #appointment.save()
-        
+    elif checkupdate and searchAppointment:
+        report = Report.objects.filter(appointement_id=searchAppointment).order_by('-report_id')[0]
+        files = File.objects.filter(report_id=report.report_id)
+        vet = report.appointement_id.vet_id
+        appointment = report.appointement_id
+        pet = appointment.pet_id
+        report2= Report(report.report_id,appointment.appointment_id,report.medical_history_id,request.Get.get('test'),report.diagnosis,report.prescribed_treatment, report.recommendations,report.additional_note,report.update_note)
+        report2.save()
+    else:
+        report=None
+        vet=None
     return render(request, 'hello/appointment.html', {
         'searchAppointment': searchAppointment,
-        'searchVet': searchVet,
         'report': report,
         'files': files,
         'vet': vet,
         'appointment': appointment,
-        'pet': pet
+        'pet': pet,
+        'checkUpdate':checkupdate,
     })
 def registerPet(request):
     return render(request,'hello/registerPet.html')
 def appointmentCreate(request):
     return render(request,'hello/appointmentCreate.html')
 def appointmentView(request):
-    return render(request, 'hello/appointmentCreate.html')
+    return render(request, 'hello/appointmentView.html')
 def rateVet(request):
     return render(request, 'hello/rateVet.html')
 def registerPet(request):
