@@ -94,5 +94,5 @@ def registerPet(request):
     return render(request, 'hello/registerPet.html')
 def viewPets(request):
     return render(request,'hello/viewPets.html')
-def viewVets(request):
-    return render(request, 'hello/viewVets.html')
+def menu(request):
+    return render(request, 'hello/menu.html')
