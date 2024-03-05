@@ -21,5 +21,6 @@ def login(request):
 def appointmentCreate(request):
     return render(request,'hello/appointmentCreate.html')
 
+
 def appointmentView(request):
     return render(request, 'hello/appointmentView.html')
