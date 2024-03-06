@@ -32,7 +32,6 @@ urlpatterns = [
     path("", project.home, name="home"),
     path("hello/<name>", views.hello_there, name="hello_there"),
     path("about/", project.about, name="about"),
-    path("contact/", project.contact, name="contact"),
     path('admin/', admin.site.urls),
     path('appoint/<appointment>/',user.backtest,name="appointment"),
     path("login/", views.login),
