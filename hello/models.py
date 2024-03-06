@@ -69,5 +69,3 @@ class Report(models.Model):
 class File(models.Model):    
     report_id=models.ForeignKey('Report',on_delete=models.CASCADE,null=False)
     file= models.FileField(upload_to ='medical/file/')
-
-

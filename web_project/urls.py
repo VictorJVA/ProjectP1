@@ -23,18 +23,17 @@ from django.urls import include, path
 from hello import views as views
 from client import views as client
 from user import views as user
-from web_project import views as project
 
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path("", project.home, name="home"),
+    path("", views.home, name="home"),
     path("hello/<name>", views.hello_there, name="hello_there"),
-    path("about/", project.about, name="about"),
+    path("about/", views.about, name="about"),
     path('admin/', admin.site.urls),
     path('appoint/<appointment>/',user.backtest,name="appointment"),
-    path("login/", views.login),
+    path("login/", views.login,name="login"),
     path("appointmentView/", views.appointmentView, name="appointmentView"),
     path("appointmentCreate/", views.appointmentCreate,name ="appointmentCreate"),
     path("rateVet/", client.rateVet, name = "rateVet"),

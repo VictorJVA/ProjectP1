@@ -26,4 +26,9 @@ def appointmentView(request):
     return render(request, 'hello/appointmentView.html')
 def save(request):
     
-    return render(request, 'save.html')
+    return render(request, 'hello/save.html')
+
+def home(request):
+    return render(request, "hello/home.html")
+def about(request):
+    return render(request, "hello/about.html")
