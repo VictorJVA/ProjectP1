@@ -13,20 +13,21 @@ def backtest(request, appointment):
     report = None
     priority=None
     if searchAppointment2 and not checkupdate:
-        report = Report.objects.filter(appointement_id=searchAppointment).order_by('-date_created')[0]
+        report = Report.objects.filter(appointement_id=searchAppointment).order_by('-report_id')[0]
         files = File.objects.filter(report_id=report.report_id)
         vet = report.appointement_id.vet_id
         appointment = report.appointement_id
         pet = appointment.pet_id
     elif checkupdate and searchAppointment2:
-        report = Report.objects.filter(appointement_id=searchAppointment).order_by('date_created')[0]
-        reportid= Report.objects.filter(appointement_id=searchAppointment).order_by('-report_id')[0]
+        report = Report.objects.filter(appointement_id=searchAppointment).order_by('-report_id')[0]
         files = File.objects.filter(report_id=report.report_id)
         vet = report.appointement_id.vet_id
         appointment = report.appointement_id
         pet = appointment.pet_id
-        report2= Report(reportid.report_id+1,appointment.appointment_id,report.medical_history_id.Medical_history_id,request.GET.get('test'),request.GET.get('diagnosis'),request.GET.get('prescribed_treatment'),request.GET.get('aditional_recomend'),request.GET.get('aditional_notes'),request.GET.get('checkUpdate'))
+        report2= Report(report.report_id+1,appointment.appointment_id,report.medical_history_id.Medical_history_id,request.GET.get('test'),request.GET.get('diagnosis'),request.GET.get('prescribed_treatment'),request.GET.get('aditional_recomend'),request.GET.get('aditional_notes'),request.GET.get('checkUpdate'))
+        print(report.date_created)
         report2.save()
+        report=report2
     else:
         report=None
         vet=None
@@ -42,3 +43,6 @@ def backtest(request, appointment):
 
 def viewPets(request):
     return render(request,'viewPets.html')
+def save(request):
+    
+    return render(request, 'save.html')

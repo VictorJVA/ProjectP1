@@ -10,4 +10,3 @@ def registerPet(request):
 
 def rateVet(request):
     return render(request, 'rateVet.html')
-
