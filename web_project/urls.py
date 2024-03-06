@@ -41,7 +41,6 @@ urlpatterns = [
     path("petView/",user.viewPets,name= "viewPets"),
     path("homeClient/",client.homeClient,name= "homeClient"),
     path('save/',views.save,name='save'),
-
 ]
 
 urlpatterns += static('/report/',document_root=os.path.join(BASE_DIR,'report'))
