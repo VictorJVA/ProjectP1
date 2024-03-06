@@ -21,22 +21,27 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from hello import views as views
+from client import views as client
+from user import views as user
+from web_project import views as project
 
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path("", views.home, name="home"),
+    path("", project.home, name="home"),
     path("hello/<name>", views.hello_there, name="hello_there"),
-    path("about/", views.about, name="about"),
-    path("contact/", views.contact, name="contact"),
+    path("about/", project.about, name="about"),
+    path("contact/", project.contact, name="contact"),
     path('admin/', admin.site.urls),
-    path('appoint/<appointment>/',views.backtest,name="appointment"),
+    path('appoint/<appointment>/',user.backtest,name="appointment"),
     path("login/", views.login),
     path("appointmentView/", views.appointmentView, name="appointmentView"),
     path("appointmentCreate/", views.appointmentCreate,name ="appointmentCreate"),
-    path("rateVet/", views.rateVet, name = "rateVet"),
-    path("petView/",views.viewPets,name= "viewPets")
+    path("rateVet/", client.rateVet, name = "rateVet"),
+    path("petView/",user.viewPets,name= "viewPets"),
+    path("homeClient/",client.homeClient,name= "homeClient")
+
 ]
 
 urlpatterns += static('/report/',document_root=os.path.join(BASE_DIR,'report'))

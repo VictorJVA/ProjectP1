@@ -5,8 +5,6 @@ class Log_in(models.Model):
     log_id=models.IntegerField(max_length=None,primary_key=True)
     user_name=models.CharField(max_length=255,unique=True)
     password= models.CharField(max_length=255)
-
-
 class Appointment(models.Model):
     appointment_id=models.IntegerField(max_length=None,primary_key=True)
     pet_id= models.ForeignKey('Pets',on_delete=models.CASCADE,null=False)
