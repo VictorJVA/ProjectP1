@@ -24,3 +24,6 @@ def appointmentCreate(request):
 
 def appointmentView(request):
     return render(request, 'hello/appointmentView.html')
+def save(request):
+    
+    return render(request, 'save.html')

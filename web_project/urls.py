@@ -39,7 +39,8 @@ urlpatterns = [
     path("appointmentCreate/", views.appointmentCreate,name ="appointmentCreate"),
     path("rateVet/", client.rateVet, name = "rateVet"),
     path("petView/",user.viewPets,name= "viewPets"),
-    path("homeClient/",client.homeClient,name= "homeClient")
+    path("homeClient/",client.homeClient,name= "homeClient"),
+    path('save/',views.save,name='save'),
 
 ]
 

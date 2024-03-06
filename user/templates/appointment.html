@@ -105,7 +105,7 @@
 
         {%for i in allergies%}
         <p>Allergies: {{pet.allergies}}</p>
-        
+        {%endfor%}
         {%else%}
         <p>Allergies </p>
         {%endif%}
@@ -204,8 +204,7 @@
                 name="aditional_recomend"
                 rows="5"
                 cols="120"
-                placeholder={{report.recommendations}}
-              >{{record.recommendations}}</textarea
+              >{{report.recommendations}}</textarea
               ><br />
               {% else %}
               <label for="aditional_recomend">aditional recomend:</label>
@@ -226,7 +225,6 @@
                 name="aditional_notes"
                 rows="3"
                 cols="40"
-                placeholder={{report.additional_note}}
               >{{report.additional_note}}</textarea
               ><br />
               {% else %}
@@ -245,16 +243,17 @@
               <input id="file" type="file">
             </div>
           </fieldset>
-          <label>Enter update reason: </label>
-            <textarea
-              id="Updates"
-              name="checkUpdate"
-              rows="3"
-              cols="40"
-            ></textarea
-            ><br />
             <form action="{% url 'save'%}">
-          <input id='myButton'class="btn-save" type='submit' name="Save" value="Save" />
+              <label for="checkUpdate" class="form-label">Enter update reason: </label>
+              <input
+                id="Updates"
+                class="form-control"
+                type="checkUpdate"
+                name="checkUpdate"
+                rows="3"
+                cols="40"
+              />
+          <button class="btn btn-primary" type='submit'>save</button>
         </form>
         </form>
   </div>
