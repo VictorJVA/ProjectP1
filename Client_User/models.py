@@ -7,6 +7,7 @@ class Client(models.Model):
     client_id= models.IntegerField(max_length=None,primary_key=True)
     log_id= models.ForeignKey('Log_in',on_delete=models.CASCADE,null=False)
     name= models.CharField(max_length=50)
+    image= models.ImageField(upload_to='client/images/')
 
 class Pets(models.Model):
     pet_id= models.IntegerField(max_length= None,primary_key=True)
@@ -17,7 +18,7 @@ class Pets(models.Model):
     birth_date=models.DateField(max_length=99)
     gender= models.BooleanField()
     allergies=models.CharField(max_length=100, null= False)
-    image= models.ImageField(upload_to='client/static/img')
+    image= models.ImageField(upload_to='pet/images/')
     
 class Medical_history(models.Model):
     Medical_history_id= models.IntegerField(max_length=None,primary_key=True)
