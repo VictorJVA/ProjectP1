@@ -192,7 +192,8 @@
   display: flex;
   flex-direction: column;
   justify-content: end;
-  min-height: auto;
+  /* min-height: auto; */
+  height: 500px;
 }
 
 .card img {
