@@ -1,0 +1,6 @@
+python-dotenv
+django
+git
+pillow
+matplotlib
+numpy
