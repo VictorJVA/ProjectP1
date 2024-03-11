@@ -13,6 +13,7 @@ class Pets(models.Model):
     birth_date=models.DateField(max_length=99)
     gender= models.BooleanField()
     allergies=models.CharField(max_length=100, null= False)
+
     
 class Medical_history(models.Model):
     Medical_history_id= models.IntegerField(max_length=None,primary_key=True)

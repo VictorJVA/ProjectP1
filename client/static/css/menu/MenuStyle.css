@@ -169,6 +169,7 @@
   color: white;
   border-radius: 0.6rem;
   padding: 0 2rem;
+  /* max-width: 900px; */
   /* font-weight: 1200; */
   /* position: fixed; */
 }
@@ -178,6 +179,7 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   padding: 2rem;
+  /* width: 1500px; */
 }
 .card {
   width: 350px;
