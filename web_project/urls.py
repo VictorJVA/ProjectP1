@@ -38,8 +38,9 @@ urlpatterns = [
     path("appointmentCreate/", views.appointmentCreate,name ="appointmentCreate"),
     path("rateVet/", client.rateVet, name = "rateVet"),
     path("petView/",user.viewPets,name= "viewPets"),
-    path("homeClient/",client.homeClient,name= "homeClient"),
+    path("homeClient/<int:id_cliente>/",client.homeClient,name= "homeClient"),
     path('save/',user.save,name='save'),
 ]
 
 urlpatterns += static('/report/',document_root=os.path.join(BASE_DIR,'report'))
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -21,9 +21,9 @@
         <i class="bx bx-menu" id="btn"></i>
       </div>
       <div class="user">
-        <img class="user-img" src="../../static/img/collie.jpg	" alt="" />
+        <img class="user-img" src="{{ client.image.url }}" alt="photo owner" />
         <div>
-          <p class="bold">User name</p>
+          <p class="bold">{{client.name}}</p>
           <p>Owner</p>
         </div>
       </div>
@@ -62,96 +62,17 @@
     <div class="main-content">
       <h1>your pets</h1>
       <div class="card-container">
+        {% for pet in pets %}
         <div class="card">
-          <img src="../static/img/collie.jpg" alt="pet photo" />
+          <img src="{{ pet.image.url }}" alt="pet photo" />
           <div class="card-content">
-            <h3>pet name</h3>
-            <h3>race</h3>
-            <h3>owner</h3>
+            <h3>{{pet.name}}</h3>
+            <h3>{{pet.race}}</h3>
+            <!-- <h3>{{pet.client_id.name}}</h3> -->
             <a href="#" class="btn">clinical record</a>
           </div>
         </div>
-        <div class="card">
-          <img src="../static/img/pet2.jpg" alt="pet photo" />
-          <div class="card-content">
-            <h3>pet name</h3>
-            <h3>race</h3>
-            <h3>owner</h3>
-            <a href="#" class="btn">clinical record</a>
-          </div>
-        </div>
-        <div class="card">
-          <img src="../static/img/pet3.jpg" alt="pet photo" />
-          <div class="card-content">
-            <h3>pet name</h3>
-            <h3>race</h3>
-            <h3>owner</h3>
-            <a href="#" class="btn">clinical record</a>
-          </div>
-        </div>
-        <div class="card">
-          <img src="../static/img/pet4.jpg" alt="pet photo" />
-          <div class="card-content">
-            <h3>pet name</h3>
-            <h3>race</h3>
-            <h3>owner</h3>
-            <a href="#" class="btn">clinical record</a>
-          </div>
-        </div>
-        <div class="card">
-          <img src="../static/img/pet5.jpg" alt="pet photo" />
-          <div class="card-content">
-            <h3>pet name</h3>
-            <h3>race</h3>
-            <h3>owner</h3>
-            <a href="#" class="btn">clinical record</a>
-          </div>
-        </div>
-        <div class="card">
-          <img src="../static/img/pet6.jpg" alt="pet photo" />
-          <div class="card-content">
-            <h3>pet name</h3>
-            <h3>race</h3>
-            <h3>owner</h3>
-            <a href="#" class="btn">clinical record</a>
-          </div>
-        </div>
-        <div class="card">
-          <img src="../static/img/pet10.jpg" alt="pet photo" />
-          <div class="card-content">
-            <h3>pet name</h3>
-            <h3>race</h3>
-            <h3>owner</h3>
-            <a href="#" class="btn">clinical record</a>
-          </div>
-        </div>
-        <div class="card">
-          <img src="../static/img/pet8.jpg" alt="pet photo" />
-          <div class="card-content">
-            <h3>pet name</h3>
-            <h3>race</h3>
-            <h3>owner</h3>
-            <a href="#" class="btn">clinical record</a>
-          </div>
-        </div>
-        <div class="card">
-          <img src="../static/img/pet9.jpg" alt="pet photo" />
-          <div class="card-content">
-            <h3>pet name</h3>
-            <h3>race</h3>
-            <h3>owner</h3>
-            <a href="#" class="btn">clinical record</a>
-          </div>
-        </div>
-        <div class="card">
-          <img src="../static/img/pet7.jpg" alt="pet photo" />
-          <div class="card-content">
-            <h3>pet name</h3>
-            <h3>race</h3>
-            <h3>owner</h3>
-            <a href="#" class="btn">clinical record</a>
-          </div>
-        </div>
+        {% endfor%}
       </div>
     </div>
   </body>
