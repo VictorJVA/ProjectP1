@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from hello.models import Report,File,Appointment,Client,Vet,Log_in
+from Client_User.models import Report,File,Appointment,Client,Vet,Log_in
 from django.shortcuts import render, redirect
 
 def homeClient(request):
@@ -10,4 +10,3 @@ def registerPet(request):
 
 def rateVet(request):
     return render(request, 'rateVet.html')
-

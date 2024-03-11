@@ -20,7 +20,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from hello import views as views
+from Client_User import views as views
 from client import views as client
 from user import views as user
 
@@ -39,7 +39,7 @@ urlpatterns = [
     path("rateVet/", client.rateVet, name = "rateVet"),
     path("petView/",user.viewPets,name= "viewPets"),
     path("homeClient/",client.homeClient,name= "homeClient"),
-    path('save/',views.save,name='save'),
+    path('save/',user.save,name='save'),
 ]
 
 urlpatterns += static('/report/',document_root=os.path.join(BASE_DIR,'report'))
