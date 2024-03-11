@@ -1,4 +1,7 @@
 from django.db import models
+
+# Create your models here.
+from django.db import models
 # Create your models here.
 class Client(models.Model):
     client_id= models.IntegerField(max_length=None,primary_key=True)
@@ -28,6 +31,7 @@ class Vaccination(models.Model):
     vaccination_id=models.IntegerField(max_length=None,primary_key=True)
     medical_history_id=models.ForeignKey('Medical_history',on_delete=models.CASCADE,null=False)
     vaccine=models.ForeignKey('Vaccines',on_delete=models.CASCADE,null=False)
+    vaccine_date= models.DateField(auto_now=False,auto_now_add=False,null=True)
 
 class Vaccines(models.Model):
     vaccine_id=models.IntegerField(max_length=None,primary_key=True)
@@ -73,3 +77,4 @@ class Report(models.Model):
 class File(models.Model):    
     report_id=models.ForeignKey('Report',on_delete=models.CASCADE,null=False)
     file= models.FileField(upload_to ='medical/file/')
+

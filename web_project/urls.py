@@ -20,7 +20,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from hello import views as views
+from Client_User import views as views
 from client import views as client
 from user import views as user
 
