@@ -193,12 +193,12 @@
   flex-direction: column;
   justify-content: end;
   /* min-height: auto; */
-  height: 500px;
+  /* height: 500px; */
 }
 
 .card img {
-  min-height: 600px;
-  max-height: 600px;
+  min-height: 400px;
+  max-height: 400px;
   max-width: auto;
   min-width: auto;
 }
