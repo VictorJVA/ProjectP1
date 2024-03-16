@@ -46,3 +46,12 @@ def viewPets(request):
 def save(request):
     
     return render(request, 'save.html')
+
+def appointmentOutside(request):
+    client = Client.objects.all()
+    return render(request, 'appointmentsOutside.html', {'client': client})
+
+
+def appointmentInside(request):
+    appointment = Appointment.objects.all()
+    return render(request, 'appointmentInside.html', {'appointment': appointment})

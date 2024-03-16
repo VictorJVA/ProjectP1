@@ -10,7 +10,7 @@ def homeClient(request, id_cliente):
     pets = Pets.objects.filter(client_id=client)
     print(pets)
     # pdb.set_trace()
-    return render(request, 'homeClient.html', {'pets': pets, 'client': client})
+    return render(request, 'homeClient.html', {'pets': pets, 'client': client}, {'pets': pets, 'client': client})
 
 def registerPet(request):
     return render(request, 'registerPet.html')
