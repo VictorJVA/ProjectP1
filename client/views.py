@@ -17,3 +17,9 @@ def registerPet(request):
 
 def rateVet(request):
     return render(request, 'rateVet.html')
+
+def appointmentViewClient(request,id_pet):
+    appointment = Appointment.objects.filter(pet_id=id_pet)
+    client = Pets.objects.get(pk=id_pet).client_id
+    # pdb.set_trace()
+    return render(request, 'appointmentViewClient.html', {'appointment': appointment, 'client': client})
