@@ -52,6 +52,7 @@ class Vet(models.Model):
     name= models.CharField(max_length=50)
     country_intials=models.CharField(max_length=4)
     phone=models.CharField(max_length=15)
+    image= models.ImageField(upload_to='user/images/', null=True)
 #QUICK SEPARATION
     
 

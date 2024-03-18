@@ -15,5 +15,16 @@ def homeClient(request, id_cliente):
 def registerPet(request):
     return render(request, 'registerPet.html')
 
-def rateVet(request):
-    return render(request, 'rateVet.html')
+def rateVet(request, id_client, vet_id):
+    client=Client.objects.get(pk=id_client)
+    vet_id= Vet.objects.get(pk=vet_id)
+    appointment= Appointment.objects.filter(client_id=client).filter(vet_id=vet_id)
+    if appointment and request.GET.get('rating')!=None:
+        appointment.update(comment=request.GET.get('comment'))
+        appointment.update(rating=request.GET.get('rating'))
+        appointment=appointment[0]
+    else:
+        appointment=appointment.get(vet_id=vet_id)
+    print(client.client_id)
+    print(client)
+    return render(request, 'rateVet.html',{'appointment':appointment,'client':client,'rate':appointment.rating,'com':appointment.comment})
