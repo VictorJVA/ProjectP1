@@ -29,3 +29,6 @@ def home(request):
     return render(request, "hello/home.html")
 def about(request):
     return render(request, "hello/about.html")
+
+def stastistics(request):
+    return render(request,"statistics.html")
