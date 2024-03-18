@@ -64,6 +64,8 @@ class Appointment(models.Model):
     date=models.DateField()
     time=models.TimeField(auto_now=False, auto_now_add=False)
     reason_appointment=models.CharField(max_length=200,null=True)
+    rating= models.IntegerField(null=True)
+    comment=models.CharField(max_length=200,null=True)
 
 class Report(models.Model):
     report_id=models.IntegerField(max_length=None,primary_key=True)
