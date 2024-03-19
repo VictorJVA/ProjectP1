@@ -95,7 +95,7 @@
       </div>
       <div class="pet-profile">
         {% load static %}
-        <img src="{% static 'img/collie.jpg' %}" alt="pet photo" />
+        <img src="{ pet.image.url }" alt="pet photo" />
         {%if report %}
         <p>Pet name: {{pet.name}}</p>
         {%else%}
