@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.utils.timezone import datetime
 # Create your views here.
 from django.http import HttpResponse
-from .models import Report,File,Appointment,Client,Vet,Log_in
+from .models import Report,File,Appointment,Client,Vet,Log_in,Pets
 
 def hello_there(request, name):
     print(request.build_absolute_uri()) #optional
@@ -31,4 +31,5 @@ def about(request):
     return render(request, "hello/about.html")
 
 def stastistics(request):
+
     return render(request,"statistics.html")

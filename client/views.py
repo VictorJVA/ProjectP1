@@ -28,3 +28,6 @@ def rateVet(request, id_client, vet_id):
     print(client.client_id)
     print(client)
     return render(request, 'rateVet.html',{'appointment':appointment,'client':client,'rate':appointment.rating,'com':appointment.comment})
+def appointmentViewClient(request, id_pet):
+    appointment= Appointment.objects.filter(pet_id=id_pet)
+    return render(request,'appointmentViewClient.html',{'appointment':appointment})
