@@ -23,13 +23,15 @@
       <div class="user">
         <img class="user-img" src="{{ client.image.url }}" alt="photo owner" />
         <div>
-          <p class="bold">{{client.name}}</p>
+          <p class="bold">
+            <a href="/homeClient/{{client.client_id}}">{{client.name}}</a>
+          </p>
           <p>Owner</p>
         </div>
       </div>
       <ul>
         <li>
-          <a href="#"
+          <a href="/registerPet/{{client.client_id}}"
             ><i class="bx bxs-dog"></i>
             <span class="nav-item">pet register</span>
           </a>
