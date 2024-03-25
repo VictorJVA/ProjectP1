@@ -11,7 +11,7 @@ def homeClient(request, id_cliente):
     pets = Pets.objects.filter(client_id=client)
     # print(pets)
     # pdb.set_trace()
-    return render(request, 'homeClient.html', {'pets': pets, 'client': client}, {'pets': pets, 'client': client})
+    return render(request, 'homeClient.html', {'pets': pets, 'client': client})
 
 def registerPet(request, id_cliente):
     client = Client.objects.get(pk=id_cliente)
@@ -31,12 +31,14 @@ def registerPet(request, id_cliente):
     return render(request, 'registerPet.html', context)
 
 def rateVet(request, appointment_id):
-    appointment= Appointment.objects.get(pk=appointment_id)
+    appointment= Appointment.objects.filter(pk=appointment_id)
     if appointment and request.GET.get('rating')!=None:
         appointment.update(comment=request.GET.get('comment'))
         appointment.update(rating=request.GET.get('rating'))
-        appointment=appointment[0]
-    return render(request, 'rateVet.html',{'appointment':appointment,'rate':appointment.rating,'com':appointment.comment})
+        appointment= appointment[0]
+    else:
+        appointment= appointment[0]
+    return render(request, 'rateVet.html',{'appointment':appointment})
 def appointmentViewClient(request, id_pet):
     appointment= Appointment.objects.filter(pet_id=id_pet)
     return render(request,'appointmentViewClient.html',{'appointment':appointment})
