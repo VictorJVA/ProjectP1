@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/clinicalUser.css" />
+
+    <title>Pet Pal</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="top">
+        <div class="logo">
+          <i class="bx bxl-baidu"></i>
+          <span>User Menu</span> 
+        </div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <div class="user">
+        <img class="user-img" src="{{ client.image.url }}" alt="photo vet" />
+        <div>
+          <p class="bold">{{client.name}}</p>
+          <p>Vet</p>
+        </div>
+      </div>
+      <ul>
+        <li>
+          <a href="#">
+            <i class='bx bx-book-add'></i>
+            <span class="nav-item">create appointment</span>
+          </a>
+          <span class="tooltip">create appointment</span>
+        </li>
+        <li>
+          <a href="#"
+            ><i class='bx bx-show-alt'></i>
+            <span class="nav-item">view appointment</span>
+          </a>
+          <span class="tooltip">view appointment</span>
+        </li>
+        <li>
+          <a href="#"
+            ><i class="bx bxs-like"></i>
+            <span class="nav-item">view ratings</span>
+          </a>
+          <span class="tooltip">view ratings</span>
+        </li>
+
+        <li>
+          <a href="#"
+            ><i class="bx bx-log-out"></i>
+            <span class="nav-item">logout home</span>
+          </a>
+          <span class="tooltip">logout home</span>
+        </li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <h1>clinical record</h1>
+      {% for pet in pets %}
+      <div class="pet-card">
+        <div class="pet-info">
+          <img class="pet-img" src="{{ pet.image.url }}" alt="Pet Photo" />
+          <div>
+            <h3>Name: <span>{{ pet.name }}</span></h3>
+            <br />
+            <h3>Race: <span>{{ pet.race }}</span></h3>
+            <br />
+            <h3>Birth Date: <span>{{ pet.birth_date }}</span></h3>
+            <br />
+            <h3>Gender: <span>{{ pet.gender }}</span></h3>
+            <br />
+            <h3>Allergies: <span>{{ pet.allergies }}</span></h3>
+          </div>
+        </div>
+        <div class="vaccine-cards">
+          <!-- Contenedor grande con fondo blanco -->
+          <div class="vaccine-card-container">
+            <!-- Contenedores pequeños con fondo lightslategrey -->
+            <div class="vaccine-card">
+              <h3>Vaccine: </h3>
+              <h3>Vaccine Date: </h3>
+            </div>
+            <!-- Repite esta estructura para cada tarjeta de vacuna -->
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <button class="edit-button">Edit</button>
+  </body>
+  <script>
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+    btn.onclick = function () {
+      sidebar.classList.toggle("active");
+    };
+  </script>
+</html>

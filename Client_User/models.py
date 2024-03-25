@@ -53,6 +53,7 @@ class Vet(models.Model):
     country_intials=models.CharField(max_length=4)
     phone=models.CharField(max_length=15)
     image= models.ImageField(upload_to='user/images/', null=True)
+    image= models.ImageField(upload_to='user/images/', null=True)
 #QUICK SEPARATION
     
 
@@ -64,8 +65,9 @@ class Appointment(models.Model):
     date=models.DateField()
     time=models.TimeField(auto_now=False, auto_now_add=False)
     reason_appointment=models.CharField(max_length=200,null=True)
-    rating= models.IntegerField(null=True)
-    comment=models.CharField(max_length=200,null=True)
+    rating=models.IntegerField(null=True)
+    comment=models.CharField(max_length=50,null=True)
+
 
 class Report(models.Model):
     report_id=models.AutoField(max_length=None,primary_key=True)
