@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from Client_User.models import Report,File,Appointment,Client,Vet,Log_in
+from Client_User.models import Report,File,Appointment,Client,Vet,Log_in,Pets
 
 
 def backtest(request, appointment):
@@ -46,7 +46,6 @@ def viewPets(request):
 def save(request):
     
     return render(request, 'save.html')
-
 def appointmentOutside(request):
     client = Client.objects.all()
     return render(request, 'appointmentsOutside.html', {'client': client})
@@ -55,3 +54,6 @@ def appointmentOutside(request):
 def appointmentInside(request):
     appointment = Appointment.objects.all()
     return render(request, 'appointmentInside.html', {'appointment': appointment})
+def clinicalUserView(request):
+    pets = Pets.objects.all()
+    return render(request, 'clinicalUserView.html', {'pets': pets})

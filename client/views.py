@@ -30,19 +30,15 @@ def registerPet(request, id_cliente):
     
     return render(request, 'registerPet.html', context)
 
-def rateVet(request, id_client, vet_id):
-    client=Client.objects.get(pk=id_client)
-    vet_id= Vet.objects.get(pk=vet_id)
-    appointment= Appointment.objects.filter(client_id=client).filter(vet_id=vet_id)
+def rateVet(request, appointment_id):
+    appointment= Appointment.objects.filter(pk=appointment_id)
     if appointment and request.GET.get('rating')!=None:
         appointment.update(comment=request.GET.get('comment'))
         appointment.update(rating=request.GET.get('rating'))
-        appointment=appointment[0]
+        appointment= appointment[0]
     else:
-        appointment=appointment.get(vet_id=vet_id)
-    print(client.client_id)
-    print(client)
-    return render(request, 'rateVet.html',{'appointment':appointment,'client':client,'rate':appointment.rating,'com':appointment.comment})
+        appointment= appointment[0]
+    return render(request, 'rateVet.html',{'appointment':appointment})
 def appointmentViewClient(request, id_pet):
     appointment= Appointment.objects.filter(pet_id=id_pet)
     return render(request,'appointmentViewClient.html',{'appointment':appointment})
