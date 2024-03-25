@@ -7,6 +7,7 @@ class Client(models.Model):
     client_id= models.AutoField(max_length=None,primary_key=True)
     log_id= models.ForeignKey('Log_in',on_delete=models.CASCADE,null=False)
     name= models.CharField(max_length=50)
+    postal_code=models.CharField(max_length=100)
     image= models.ImageField(upload_to='client/images/')
 
 class Pets(models.Model):
@@ -28,7 +29,6 @@ class Medical_history(models.Model):
     
 class Phone_Owner(models.Model):
     client_id= models.ForeignKey('Client',on_delete=models.CASCADE,null=False)
-    country_intials=models.CharField(max_length=4)
     phone=models.CharField(max_length=15)
     
 class Vaccination(models.Model):
@@ -53,7 +53,7 @@ class Vet(models.Model):
     vet_id=models.AutoField(max_length=None,primary_key=True)
     log_id=models.ForeignKey('Log_in',on_delete=models.CASCADE,null=False)
     name= models.CharField(max_length=50)
-    country_intials=models.CharField(max_length=4)
+    postal_code=models.CharField(max_length=100)
     phone=models.CharField(max_length=15)
     image= models.ImageField(upload_to='user/images/', null=True)
 #QUICK SEPARATION
