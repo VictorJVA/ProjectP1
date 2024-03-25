@@ -1,91 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../static/css/menu/MenuStyle.css" />
-
-    <title>Pet Pal</title>
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="sidebar">
-      <div class="top">
-        <div class="logo">
-          <i class="bx bxl-baidu"></i>
-          <span>Client Menu</span>
-        </div>
-        <i class="bx bx-menu" id="btn"></i>
-      </div>
-      <div class="user">
-        <img class="user-img" src="{{ client.image.url }}" alt="photo owner" />
-        <div>
-          <p class="bold">
-            <a href="/homeClient/{{client.client_id}}">{{client.name}}</a>
-          </p>
-          <p>Owner</p>
-        </div>
-      </div>
-      <ul>
-        <li>
-          <a href="/registerPet/{{client.client_id}}"
-            ><i class="bx bxs-dog"></i>
-            <span class="nav-item">pet register</span>
-          </a>
-          <span class="tooltip">pet register</span>
-        </li>
-        <li>
-          <a href="#"
-            ><i class="bx bx-body"></i>
-            <span class="nav-item">vet information</span>
-          </a>
-          <span class="tooltip">vet information</span>
-        </li>
-        <li>
-          <a href="#"
-            ><i class="bx bxs-like"></i>
-            <span class="nav-item">rate vet</span>
-          </a>
-          <span class="tooltip">rate vet</span>
-        </li>
-
-        <li>
-          <a href="#"
-            ><i class="bx bx-log-out"></i>
-            <span class="nav-item">logout home</span>
-          </a>
-          <span class="tooltip">logout home</span>
-        </li>
-      </ul>
+{% extends "base.html" %} {% block content %}
+<h1>register pets</h1>
+<div class="form">
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %} {% for campo in form %}
+    <div class="contenedor-form">
+      <label for="">{{campo.label}}: </label>
+      <input
+        type="{{ campo.field.widget.input_type }}"
+        placeholder="{{campo.label}}"
+        name="{{campo.name}}"
+      />
     </div>
-    <div class="main-content">
-      <h1>register pets</h1>
-      <div class="form">
-        <form action="" method="post" enctype="multipart/form-data">
-          {% csrf_token %} {% for campo in form %}
-          <div class="contenedor-form">
-            <label for="">{{campo.label}}: </label>
-            <input
-              type="{{ campo.field.widget.input_type }}"
-              placeholder="{{campo.label}}"
-              name="{{campo.name}}"
-            />
-          </div>
-          <!-- <div class="errores">{{campo.errors}}</div> -->
-          {% endfor %}
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
-    </div>
-  </body>
-  <script>
-    let btn = document.querySelector("#btn");
-    let sidebar = document.querySelector(".sidebar");
-    btn.onclick = function () {
-      sidebar.classList.toggle("active");
-    };
-  </script>
-</html>
+    <!-- <div class="errores">{{campo.errors}}</div> -->
+    {% endfor %}
+    <input type="submit" value="Submit" />
+  </form>
+</div>
+{% endblock content %}
