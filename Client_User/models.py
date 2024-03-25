@@ -55,6 +55,7 @@ class Vet(models.Model):
     name= models.CharField(max_length=50)
     postal_code=models.CharField(max_length=100)
     phone=models.CharField(max_length=15)
+    average_score=models.IntegerField()
     image= models.ImageField(upload_to='user/images/', null=True)
 #QUICK SEPARATION
     
