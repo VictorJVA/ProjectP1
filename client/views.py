@@ -42,3 +42,11 @@ def rateVet(request, appointment_id):
 def appointmentViewClient(request, id_pet):
     appointment= Appointment.objects.filter(pet_id=id_pet)
     return render(request,'appointmentViewClient.html',{'appointment':appointment})
+
+def vetInformation(request, id_cliente):
+    client = Client.objects.get(pk=id_cliente)
+    context = {
+        'client': client,
+    }
+    
+    return render(request, 'vetInformation.html', context)
