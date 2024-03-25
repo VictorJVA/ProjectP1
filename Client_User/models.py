@@ -19,6 +19,8 @@ class Pets(models.Model):
     gender= models.BooleanField()
     allergies=models.CharField(max_length=100, null= False)
     image= models.ImageField(upload_to='pet/images/')
+    tipo_sangre= models.CharField(max_length=50, null= True)
+
     
 class Medical_history(models.Model):
     Medical_history_id= models.AutoField(max_length=None,primary_key=True)
@@ -45,6 +47,7 @@ class Log_in(models.Model):
     log_id=models.AutoField(max_length=None,primary_key=True)
     user_name=models.CharField(max_length=255,unique=True)
     password= models.CharField(max_length=255)
+    key=models.CharField(max_length=100,null=True)
 
 class Vet(models.Model):
     vet_id=models.AutoField(max_length=None,primary_key=True)
@@ -52,7 +55,6 @@ class Vet(models.Model):
     name= models.CharField(max_length=50)
     country_intials=models.CharField(max_length=4)
     phone=models.CharField(max_length=15)
-    image= models.ImageField(upload_to='user/images/', null=True)
     image= models.ImageField(upload_to='user/images/', null=True)
 #QUICK SEPARATION
     
