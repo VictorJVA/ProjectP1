@@ -45,8 +45,10 @@ def appointmentViewClient(request, id_pet):
 
 def vetInformation(request, id_cliente):
     client = Client.objects.get(pk=id_cliente)
+    vet = Vet.objects.all()
     context = {
         'client': client,
+        'vet': vet,
     }
     
     return render(request, 'vetInformation.html', context)

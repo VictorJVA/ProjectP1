@@ -172,7 +172,7 @@
   text-transform: uppercase;
   background-color: lightslategray;
   color: white;
-  width: 1400px;
+  width: 1800px;
   border-radius: 0.6rem;
   padding: 0 2rem;
 }
@@ -180,9 +180,9 @@
 .card-container {
   /* background-color: red; */
   /* padding: 2rem; */
-  width: 1400px;
+  width: 1800px;
   display: grid;
-  grid-template-columns: repeat(3, 33%);
+  grid-template-columns: repeat(4, 25%);
   justify-content: center;
   align-items: center;
   grid-gap: 10px;
@@ -236,3 +236,47 @@
 
 /* -------------------------------------------- */
 /* PET REGISTER */
+
+.container-form {
+  margin: 1rem;
+}
+form {
+  width: 400px;
+  padding: 16px;
+  border-radius: 10px;
+  /* margin: auto; */
+  background-color: rgba(119, 136, 153, 0.145);
+}
+
+form label {
+  width: 72px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+form input[type="text"] {
+  width: 180px;
+  padding: 3px 10px;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: #f6f6f6;
+  margin: 8px 0;
+  display: inline-block;
+}
+
+form input[type="submit"] {
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 100%;
+  padding: 8px 16px;
+  margin-top: 32px;
+  border: 1px solid lightslategray;
+  border-radius: 5px;
+  display: block;
+  color: white;
+  background-color: lightslategray;
+}
+
+form input[type="submit"]:hover {
+  cursor: pointer;
+}
