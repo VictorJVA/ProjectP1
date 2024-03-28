@@ -57,6 +57,7 @@ class Vet(models.Model):
     phone=models.CharField(max_length=15)
     average_score=models.IntegerField()
     image= models.ImageField(upload_to='user/images/', null=True)
+    address= models.CharField(max_length=100, null=True)
 #QUICK SEPARATION
     
 
@@ -70,6 +71,7 @@ class Appointment(models.Model):
     reason_appointment=models.CharField(max_length=200,null=True)
     rating=models.IntegerField(null=True)
     comment=models.CharField(max_length=50,null=True)
+    appointment_accepted= models.BooleanField(default=False)
 
 
 class Report(models.Model):
