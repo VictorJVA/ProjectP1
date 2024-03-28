@@ -1,24 +1,22 @@
 {% extends "base.html" %} {% block content %}
-{% for appointment in appointment %}
-{% for appointment in appointment %}
+<h1>View rate</h1>
+{% for appointment in appointment %} {% for appointment in appointment %}
 <div class="card">
-    <div class="card-content">
-        <h3>Veterinarian Name: <span>{{ appointment.vet_id.name }}</span></h3>
-        <br />
-        <h3>Date: <span>{{ appointment.date }}</span></h3>
-        <br />
-        <h3>Time: <span>{{ appointment.time }}</span></h3>
-        <br />
-        <h3>Pet Name: <span>{{ appointment.pet_id.name}}</span></h3>
-        <br />
-        <p>Reason: <span>{{ appointment.reason_appointment }}</span></p>
-        <br />
-        <a href="/rateVet/{{appointment.appointment_id}}/" class="btn">
-            <i class="bx bxs-dog"></i>
-            <span class="nav-item">Rate appointment</span>
-        </a>
-    </div>
+  <div class="card-content">
+    <h3>Veterinarian Name: <span>{{ appointment.vet_id.name }}</span></h3>
+    <br />
+    <h3>Date: <span>{{ appointment.date }}</span></h3>
+    <br />
+    <h3>Time: <span>{{ appointment.time }}</span></h3>
+    <br />
+    <h3>Pet Name: <span>{{ appointment.pet_id.name}}</span></h3>
+    <br />
+    <p>Reason: <span>{{ appointment.reason_appointment }}</span></p>
+    <br />
+    <a href="/rateVet/{{appointment.appointment_id}}/" class="btn">
+      <i class="bx bxs-dog"></i>
+      <span class="nav-item">Rate appointment</span>
+    </a>
+  </div>
 </div>
-{% endfor %}
-{% endfor %}
-{% endblock content %}
+{% endfor %} {% endfor %} {% endblock content %}
