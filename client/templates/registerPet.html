@@ -1,17 +1,26 @@
 {% extends "base.html" %} {% block content %}
 <h1>register pets</h1>
-<div class="form">
+<div class="container-form">
   <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %} {% for campo in form %}
-    <div class="contenedor-form">
-      <label for="">{{campo.label}}: </label>
+    <div class="form">
+      <label for="">{{ campo.label }}: </label>
+      {% if campo.field.widget.input_type == 'Date' %}
       <input
-        type="{{ campo.field.widget.input_type }}"
-        placeholder="{{campo.label}}"
-        name="{{campo.name}}"
+        class="field"
+        type="date"
+        placeholder="{{ campo.label }}"
+        name="{{ campo.name }}"
       />
+      {% else %}
+      <input
+        class="field"
+        type="{{ campo.field.widget.input_type }}"
+        placeholder="{{ campo.label }}"
+        name="{{ campo.name }}"
+      />
+      {% endif%}
     </div>
-    <!-- <div class="errores">{{campo.errors}}</div> -->
     {% endfor %}
     <input type="submit" value="Submit" />
   </form>

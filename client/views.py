@@ -54,3 +54,14 @@ def viewRate(request,client_id):
                            )
     
     return render(request,'viewRate.html',{'appointment':appointment,'client':client})
+
+
+def vetInformation(request, id_cliente):
+    client = Client.objects.get(pk=id_cliente)
+    vet = Vet.objects.all()
+    context = {
+        'client': client,
+        'vet': vet,
+    }
+    
+    return render(request, 'vetInformation.html', context)

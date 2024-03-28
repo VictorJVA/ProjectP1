@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block content %}
+<h1>view vets</h1>
+<div class="card-container">
+  {% for vet in vet %}
+  <div class="card">
+    <img src="{{ vet.image.url }}" alt="pet photo" />
+    <div class="card-content">
+      <h3>name: <span>{{vet.name}}</span></h3>
+      <h3>phone: <span>{{vet.phone}}</span></h3>
+      <h3>Average score: <span>{{vet.average_score}}</span></h3>
+      <!-- <h3>{{pet.client_id.name}}</h3> -->
+      <a href="#" class="btn">View</a>
+    </div>
+  </div>
+  {% endfor%}
+</div>
+{% endblock%}
