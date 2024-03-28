@@ -4,6 +4,7 @@ from Client_User.models import Report,File,Appointment,Client,Vet,Log_in, Pets
 from django.shortcuts import render, redirect
 from .forms import *
 import pdb
+from datetime import datetime
 
 def homeClient(request, id_cliente):
 
@@ -38,7 +39,18 @@ def rateVet(request, appointment_id):
         appointment= appointment[0]
     else:
         appointment= appointment[0]
-    return render(request, 'rateVet.html',{'appointment':appointment})
+    return render(request, 'rateVet.html',{'appointment':appointment,'client':appointment.pet_id.client_id})
 def appointmentViewClient(request, id_pet):
     appointment= Appointment.objects.filter(pet_id=id_pet)
     return render(request,'appointmentViewClient.html',{'appointment':appointment})
+
+def viewRate(request,client_id):
+    pets=Pets.objects.filter(client_id=client_id)
+    appointment=[]
+    client=Client.objects.get(pk=client_id)
+    for i in pets:
+        appointment.append(Appointment.objects.filter(pet_id=i.pet_id)
+                           .filter(date=datetime.now())
+                           )
+    
+    return render(request,'viewRate.html',{'appointment':appointment,'client':client})

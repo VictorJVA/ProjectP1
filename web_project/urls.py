@@ -36,7 +36,7 @@ urlpatterns = [
     path("login/", views.login,name="login"),
     path("appointmentView/", views.appointmentView, name="appointmentView"),
     path("appointmentCreate/", views.appointmentCreate,name ="appointmentCreate"),
-    path("rateVet/<appointment_id>", client.rateVet, name = "rateVet"),
+    path("rateVet/<appointment_id>/", client.rateVet, name = "rateVet"),
     path("petView/",user.viewPets,name= "viewPets"),
     path("homeClient/<int:id_cliente>/",client.homeClient,name= "homeClient"),
     path("registerPet/<int:id_cliente>/",client.registerPet,name= "registerPet"),
@@ -44,7 +44,8 @@ urlpatterns = [
     path('appointmentOutside/',user.appointmentOutside,name='appointmentOutside'),
     path('appointmentInside/',user.appointmentInside,name='appointmentInside'),
     path('appointmentViewClient/<int:id_pet>',client.appointmentViewClient,name='appointmentViewClient'),
-    path('clinicalUserView/',user.clinicalUserView,name= 'clinicalUserView' )
+    path('clinicalUserView/',user.clinicalUserView,name= 'clinicalUserView' ),
+    path('viewRate/<int:client_id>/',client.viewRate,name='viewRate'),
 ]
 
 urlpatterns += static('/report/',document_root=os.path.join(BASE_DIR,'report'))
