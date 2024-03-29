@@ -42,10 +42,10 @@ urlpatterns = [
     path("registerPet/<int:id_cliente>/",client.registerPet,name= "registerPet"),
     path("vetInformation/<int:id_cliente>/",client.vetInformation,name= "vetInformation"),
     path('save/',user.save,name='save'),
-    path('appointmentOutside/',user.appointmentOutside,name='appointmentOutside'),
-    path('appointmentInside/',user.appointmentInside,name='appointmentInside'),
+    path('appointmentOutside/<int:user_id>/',user.appointmentOutside,name='appointmentOutside'),
+    path('appointmentInside/<int:user_id>/',user.appointmentInside,name='appointmentInside'),
     path('appointmentViewClient/<int:id_pet>',client.appointmentViewClient,name='appointmentViewClient'),
-    path('clinicalUserView/',user.clinicalUserView,name= 'clinicalUserView' ),
+    path('clinicalUserView/<int:user_id>/<int:pet_id>/',user.clinicalUserView,name= 'clinicalUserView' ),
     path('viewRate/<int:client_id>/',client.viewRate,name='viewRate'),
 ]
 

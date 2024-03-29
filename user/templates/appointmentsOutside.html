@@ -3,10 +3,10 @@
 <div class="card-container">
   {% for client in client %}
   <div class="card">
-    <img src="{{ client.image.url }}" alt="client image" />
+    <img src="{{ user.pet_id.vet_id.image.url }}" alt="client image" />
     <div class="card-content">
-      <h3>name: <span>{{client.name}}</span></h3>
-      <h3>ID: <span>{{client.client_id}}</span></h3>
+      <h3>name: <span>{{user.pet_id.vet_id.name}}</span></h3>
+      <h3>ID: <span>{{user.pet_id.vet_id.vet_id}}</span></h3>
       <a href="#" class="btn">new appointment</a>
     </div>
   </div>
