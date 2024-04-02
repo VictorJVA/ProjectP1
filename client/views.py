@@ -66,3 +66,13 @@ def vetInformation(request, id_cliente):
     }
     
     return render(request, 'vetInformation.html', context)
+
+def createAppointment(request, id_cliente):
+    client = Client.objects.get(pk=id_cliente)
+
+
+    context = {
+        'client': client,
+    }
+    
+    return render(request, 'createAppointment.html', context)
