@@ -2,7 +2,7 @@ from django import forms
 from Client_User.models import *
 
 class PetForm(forms.ModelForm):
-    # client_id = forms.ModelChoiceField(queryset=Client.objects.all(), to_field_name="client_id")
+    birth_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     class Meta:
         model = Pets
         fields = ['name', 'species', 'race', 'birth_date', 'gender', 'allergies','image']
