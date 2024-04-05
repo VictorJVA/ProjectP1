@@ -236,6 +236,36 @@
 
 /* -------------------------------------------- */
 /* PET REGISTER */
+.register-pet{
+  /* background-color: red; */
+  padding: 10px;
+  .register-pet-btn{
+
+    background-color: lightslategray;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    width: 16rem;
+    padding: 0.5rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    cursor: pointer;
+    /* Cuando me paro en el cuanto teimpo se demora la transicion para volverse grande */
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+  }
+
+  /* Hacer que el boton cuando me pare en el se ponga más grande */
+  .register-pet-btn:hover, .register-pet-btn:focus, .register-pet-btn:active{
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+
+/* -------------------------------------------- */
+
 
 .container-form {
   margin: 1rem;

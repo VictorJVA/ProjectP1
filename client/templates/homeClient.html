@@ -1,5 +1,8 @@
 {% extends "baseClient.html" %} {% block content %}
 <h1>Your pets</h1>
+<div class="register-pet">
+  <button class="register-pet-btn">register pets</button>
+</div>
 <div class="card-container">
   {% for pet in pets %}
   <div class="card">
