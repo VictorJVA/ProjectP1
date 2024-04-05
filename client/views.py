@@ -29,7 +29,7 @@ def registerPet(request, id_cliente):
         'form': form,
     }
     
-    return render(request, 'registerPet.html', context)
+    return render(request, 'modalRegisterPet.html', context)
 
 def rateVet(request, appointment_id):
     appointment= Appointment.objects.filter(pk=appointment_id)
