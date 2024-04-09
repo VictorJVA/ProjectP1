@@ -1,4 +1,6 @@
 from django.shortcuts import render
+import json
+from django.http import JsonResponse
 from Client_User.models import Report,File,Appointment,Client,Vet,Log_in,Pets
 
 
@@ -47,12 +49,15 @@ def save(request):
     return render(request, 'save.html')
 
 def appointmentOutside(request, user_id):
-    appointment = list(Appointment.objects.filter(vet_id=user_id).order_by('pet_id').values_list('pet_id').distinct())
+    appointment = list(Appointment.objects.filter(vet_id=user_id).values_list('pet_id',flat=True).order_by('pet_id').distinct())
+    newlist=[]
     print(appointment)
+    for i in appointment:
+        newlist.append(Pets.objects.get(pk=i).client_id)
 
-    client = Client.objects.all()
 
-    return render(request, 'appointmentsOutside.html', {'user': appointment})
+
+    return render(request, 'appointmentsOutside.html', {'user': newlist,'client':Vet.objects.get(pk=user_id)})
 
 
 def appointmentInside(request, user_id):
@@ -67,7 +72,31 @@ def appointmentInside(request, user_id):
 def clinicalUserView(request, user_id, pet_id):
     pets=None
     client=Vet.objects.get(vet_id=user_id)
-    if(Appointment.objects.filter(vet_id=user_id)!=None):
+    
+    if(Appointment.objects.filter(vet_id=user_id).filter(appointment_accepted=True)!=None):
         pets = Pets.objects.get(pet_id=pet_id) 
 
     return render(request, 'clinicalUserView.html', {'pets': pets,'client':client})
+
+def appointmentAccept(request,user_id):
+    if(request.method=="POST"):
+        data = json.loads(request.body)
+
+        appointment_id=request.GET.get('appointment_id')
+        Appointment.objects.filter(pk=appointment_id).update(appointment_accepted=True)
+    appointment= Appointment.objects.filter(vet_id=user_id).filter(appointment_accepted=False)
+
+    return render(request,'appointmentAccept.html',{'client':Vet.objects.get(pk=user_id),'appointment':appointment})
+def update_field(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        value_to_update = data.get('value')
+
+        # Assuming you have a model named YourModel with a field named 'field_to_update'
+        # Retrieve the instance of the model you want to update
+        instance = Appointment.objects.filter(pk=value_to_update).update(appointment_accepted=True)  # Adjust this according to your model
+        # Return a JSON response indicating success
+        return JsonResponse({'success': True})
+    else:
+        # Return a JSON response indicating failure if the request method is not POST
+        return JsonResponse({'success': False, 'error': 'Invalid request method'})

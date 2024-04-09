@@ -45,7 +45,7 @@ class Vaccines(models.Model):
 #QUICK SEPARATION
 class Log_in(models.Model):
     log_id=models.AutoField(max_length=None,primary_key=True)
-    user_name=models.CharField(max_length=255,unique=True)
+    user_name=models.CharField(max_length=255)
     password= models.CharField(max_length=255)
     key=models.CharField(max_length=100,null=True)
 
