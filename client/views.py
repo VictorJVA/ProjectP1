@@ -29,7 +29,7 @@ def registerPet(request, id_cliente):
         'form': form,
     }
     
-    return render(request, 'modalRegisterPet.html', context)
+    return render(request, 'registerPet.html', context)
 
 def rateVet(request, appointment_id):
     appointment= Appointment.objects.filter(pk=appointment_id)
@@ -40,6 +40,8 @@ def rateVet(request, appointment_id):
     else:
         appointment= appointment[0]
     return render(request, 'rateVet.html',{'appointment':appointment,'client':appointment.pet_id.client_id})
+
+
 def appointmentViewClient(request, id_pet):
     appointment= Appointment.objects.filter(pet_id=id_pet)
     return render(request,'appointmentViewClient.html',{'appointment':appointment})
@@ -69,10 +71,23 @@ def vetInformation(request, id_cliente):
 
 def createAppointment(request, id_cliente):
     client = Client.objects.get(pk=id_cliente)
-
+    
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Aquí podrías agregar un mensaje de éxito o realizar cualquier otra acción necesaria
+            form = AppointmentForm()  # Vaciar el formulario después de enviar los datos exitosamente
+    else:
+        form = AppointmentForm()
 
     context = {
-        'client': client,
-    }
-    
+        'form': form,
+        'client':client,
+    }    
+
     return render(request, 'createAppointment.html', context)
+
+        
+
+

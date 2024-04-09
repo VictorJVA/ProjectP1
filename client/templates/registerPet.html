@@ -5,21 +5,12 @@
     {% csrf_token %} {% for campo in form %}
     <div class="form">
       <label for="">{{ campo.label }}: </label>
-      {% if campo.field.widget.input_type == 'Date' %}
-      <input
-        class="field"
-        type="date"
-        placeholder="{{ campo.label }}"
-        name="{{ campo.name }}"
-      />
-      {% else %}
       <input
         class="field"
         type="{{ campo.field.widget.input_type }}"
         placeholder="{{ campo.label }}"
         name="{{ campo.name }}"
       />
-      {% endif%}
     </div>
     {% endfor %}
     <input type="submit" value="Submit" />

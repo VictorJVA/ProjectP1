@@ -1,5 +1,3 @@
-from django.db import models
-
 # Create your models here.
 from django.db import models
 # Create your models here.
@@ -9,6 +7,8 @@ class Client(models.Model):
     name= models.CharField(max_length=50)
     postal_code=models.CharField(max_length=100)
     image= models.ImageField(upload_to='client/images/')
+    def __str__(self):
+        return self.name
 
 class Pets(models.Model):
     pet_id= models.AutoField(max_length= None,primary_key=True)
@@ -21,8 +21,9 @@ class Pets(models.Model):
     allergies=models.CharField(max_length=100, null= False)
     image= models.ImageField(upload_to='pet/images/')
     tipo_sangre= models.CharField(max_length=50, null= True)
+    def __str__(self):
+        return self.name
 
-    
 class Medical_history(models.Model):
     Medical_history_id= models.AutoField(max_length=None,primary_key=True)
     pet_id=models.ForeignKey('Pets',on_delete=models.CASCADE,null=False)
@@ -59,7 +60,8 @@ class Vet(models.Model):
     image= models.ImageField(upload_to='user/images/', null=True)
     address= models.CharField(max_length=100, null=True)
 #QUICK SEPARATION
-    
+    def __str__(self):
+        return self.name
 
 
 class Appointment(models.Model):
@@ -72,6 +74,7 @@ class Appointment(models.Model):
     rating=models.IntegerField(null=True)
     comment=models.CharField(max_length=50,null=True)
     appointment_accepted= models.BooleanField(default=False)
+    
 
 
 class Report(models.Model):

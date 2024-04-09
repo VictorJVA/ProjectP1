@@ -7,7 +7,17 @@
 
     <title>Pet Pal</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../../static/js/app.js"></script>
+    <script>
+      const jquery = require("jquery");
+      var $ = jquery.noConflict();
+
+      function abrir_modal_crear_pet(url){
+        $('#crearPet').load(url,function(){
+          $(this).modal('show');
+        });
+      };
+
+    </script>
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -73,5 +83,12 @@
     </div>
     <div class="main-content">{% block content %} {% endblock content %}</div>
   </body>
-
+  <script>
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+    btn.onclick = function () {
+      sidebar.classList.toggle("active");
+    };
+    
+  </script>
 </html>
