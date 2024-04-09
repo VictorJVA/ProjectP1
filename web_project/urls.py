@@ -40,6 +40,7 @@ urlpatterns = [
     path("petView/",user.viewPets,name= "viewPets"),
     path("homeClient/<int:id_cliente>/",client.homeClient,name= "homeClient"),
     path("registerPet/<int:id_cliente>/",client.registerPet,name= "registerPet"),
+    path("createAppointment/<int:id_cliente>/",client.createAppointment,name= "createAppointment"),
     path("vetInformation/<int:id_cliente>/",client.vetInformation,name= "vetInformation"),
     path('save/',user.save,name='save'),
     path('appointmentOutside/<int:user_id>/',user.appointmentOutside,name='appointmentOutside'),

@@ -1,5 +1,9 @@
 {% extends "baseClient.html" %} {% block content %}
 <h1>Your pets</h1>
+<div class="register-pet">
+  <button class="register-pet-btn" onclick="abrir_modal_crear_pet('/registerPet/{{client.client_id}}')">register pets</button>
+  <div class="modal face" id="crearPet" role="dialog"></div>
+</div>
 <div class="card-container">
   {% for pet in pets %}
   <div class="card">

@@ -6,6 +6,18 @@
     <link rel="stylesheet" href="../../static/css/menu/MenuStyle.css" />
 
     <title>Pet Pal</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      const jquery = require("jquery");
+      var $ = jquery.noConflict();
+
+      function abrir_modal_crear_pet(url){
+        $('#crearPet').load(url,function(){
+          $(this).modal('show');
+        });
+      };
+
+    </script>
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -53,6 +65,14 @@
         </li>
 
         <li>
+          <a href="/createAppointment/{{client.client_id}}"
+            ><i class='bx bx-calendar'></i>
+            <span class="nav-item">Create appointment</span>
+          </a>
+          <span class="tooltip">appointment</span>
+        </li>
+
+        <li>
           <a href="#"
             ><i class="bx bx-log-out"></i>
             <span class="nav-item">logout home</span>
@@ -69,5 +89,6 @@
     btn.onclick = function () {
       sidebar.classList.toggle("active");
     };
+    
   </script>
 </html>
