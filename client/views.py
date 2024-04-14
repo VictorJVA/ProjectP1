@@ -62,7 +62,7 @@ def vetInformation(request, id_cliente):
     client = Client.objects.get(pk=id_cliente)
     vet = Vet.objects.all()
     
-    context = {
+    context = { 
         'client': client,
         'vet': vet,
     }
@@ -77,9 +77,9 @@ def createAppointment(request, id_cliente):
         if form.is_valid():
             form.save()
             # Aquí podrías agregar un mensaje de éxito o realizar cualquier otra acción necesaria
-            form = AppointmentForm()  # Vaciar el formulario después de enviar los datos exitosamente
+            form = AppointmentForm(client_id=id_cliente)  # Vaciar el formulario después de enviar los datos exitosamente
     else:
-        form = AppointmentForm()
+        form = AppointmentForm(client_id= id_cliente)
 
     context = {
         'form': form,
