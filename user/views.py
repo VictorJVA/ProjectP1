@@ -79,12 +79,16 @@ def clinicalUserView(request, user_id, pet_id):
     return render(request, 'clinicalUserView.html', {'pets': pets,'client':client})
 
 def appointmentAccept(request, user_id, appointment_id):
+    user_id = Vet.objects.get(pk=user_id)
     if(request.method=='POST'):
         update_field
-    # if(isinstance(appointment_id, int)):
-    #     Appointment.objects.filter(pk=appointment_id).update(appointment_accepted=True)
+    if(isinstance(appointment_id, int)):
+        Appointment.objects.filter(pk=appointment_id).update(appointment_accepted=True)
     appointment= Appointment.objects.filter(vet_id=user_id).filter(appointment_accepted=False)
-    return render(request,'appointmentAccept.html',{'client':Vet.objects.get(pk=user_id),'appointment':appointment})
+    return render(request,'appointmentAccept.html',{'client':user_id,'appointment':appointment})
+
+
+
 def update_field(request):
     if request.method == 'POST':
         data = json.loads(request.body)
