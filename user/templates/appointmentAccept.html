@@ -1,12 +1,10 @@
 {% extends 'baseUser.html'%} {% block content %}
+{% csrf_token %}
 <h1>view pets</h1>
 {% for appointment in appointment %}
-{% csrf_token %}
 <body>
-<div class="card">
-  <div class="card-content">
-    <h3 >Appointment_id: <span name="appointment_id" type="submit">{{appointment.appointment_id}}</span></h3>
-    <br />
+<div class="card-container">
+  <div class="card">
     <h3 >Date: <span>{{ appointment.date }}</span></h3>
     <br />
     <h3 >Time: <span>{{ appointment.time }}</span></h3>
@@ -15,10 +13,14 @@
     <br />
     <p >Reason: <span>{{ appointment.reason_appointment }}</span></p>
     <br />
-    <button class="btn" id="updateButton" data-value="{{appointment.appointment_id}}">Accept appointment</button>
+    <a rel="" href="/appointmentAccept/{{client.vet_id}}/{{appointment.appointment_id}}"
+      ><i class="bx bxs-dog"></i>
+      <span class="nav-item">Accept appointment</span>
+    </a>
+    <!-- <button href="/appointmentAccept/{{client.vet_id}}/{{appointment.appointment_id}}" >Accept appointment</button> -->
   </div>
 </div>
-<script>
+<!-- <script>
     document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('updateButton').addEventListener('click', function() {
         var valueToSend = this.getAttribute('data-value');
@@ -42,7 +44,7 @@
         xhr.send(JSON.stringify({ value: valueToSend }));
     });
 });
-    </script>
+    </script> -->
 </body>
 {% endfor %}
 {% endblock content %}

@@ -5,3 +5,5 @@ pillow
 matplotlib
 numpy
 datetime
+boto3
+python-jose
