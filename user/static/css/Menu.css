@@ -228,3 +228,251 @@
     align-items: center;
     text-align: center;
 }
+/* 
+
+---------------------------
+appointmentStyle
+*/
+img {
+    max-width: 100%;
+  }
+  
+  header {
+    text-transform: uppercase;
+    text-align: center;
+    padding: 50px;
+  }
+  
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+  }
+  
+  form {
+    display: block;
+  }
+  
+  /* Header y navegacion */
+  
+  .main-nav {
+    text-align: right;
+    border-color: black;
+    border-bottom: solid;
+    border-width: 1px;
+    padding-bottom: 10px;
+  }
+  
+  .conteiner-appointment {
+    padding: 50px;
+    padding-top: 0px;
+    /* background-color: red; */
+    /* Uasndo display FLEX */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  
+    /* Usando display grid */
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem; */
+  }
+  
+  .pet-profile {
+    /* background-color: blue; */
+    max-width: 10rem;
+    padding: 2rem;
+    /* align-items: left; */
+    width: 50%;
+    p {
+      /* background-color: red; */
+      margin: 2px;
+    }
+  }
+  
+  .btn-save {
+    margin-top: 10px;
+    padding-right: 10px;
+    width: 10%;
+  }
+  
+  /* form */
+  .form fieldset {
+    /* max-width: 50rem; */
+    /* background-color: red; */
+    /* padding: 40px; */
+    /* padding-bottom: 10px; */
+    display: block;
+    max-width: 40rem;
+    border-color: white;
+    .campo {
+      padding: 5px;
+    }
+  }
+  
+  .form-2 {
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    fieldset {
+      max-width: 50rem;
+      border-color: white;
+      border-width: 1px;
+  
+      .campo {
+        padding-top: 5px;
+      }
+      .block {
+        padding-top: 5px;
+      }
+    }
+  }
+  
+  legend {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 2px;
+  }
+  /*
+  ------------------------------------------------
+  clinicalUser
+  */
+
+  .vaccine-card-container {
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    height: 400px;
+}
+  
+.vaccine-card {
+    background-color: lightslategrey;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 450px;
+    margin: 10px;
+    height: 80px;
+}
+  
+.pet-card {
+    background-color: lightslategrey;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+    height: auto;
+    font-size: 1.5rem;
+}
+  
+.pet-info {
+    display: flex;
+    align-items: flex-start;
+}
+  
+.pet-img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin-right: 80px;
+}
+  
+.pet-info h3 {
+    color: white;
+}
+  
+.vaccine-cards {
+    margin-top: 20px;
+    overflow-y: auto;
+}
+  
+.vaccine-card h3 {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.edit-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: white;
+    color: lightslategray;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 70px;
+    margin-right: 10px;
+    width: 100px;
+}
+
+.edit-button:hover {
+    background-color: gray;
+}
+
+/* 
+
+-----------------------------------------
+menuinside
+*/
+
+.card {
+    width: 430px;   
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    position: relative; /* Para posicionamiento relativo */
+}
+  
+.card-content {
+    height: 100%;
+}
+  
+.selection {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+  
+.select-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: lightslategray;
+    cursor: pointer;
+    margin-right: 5px;
+}
+  
+.select-button.selected {
+    background-color: lightslategrey;
+}
+  
+h3 {
+    font-weight: bold;
+}
+  
+.btn {
+    background-color: lightslategray;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+  
+.btn:hover {
+    background-color: #ccc;
+    color: #fff;
+}
+
+
+  
