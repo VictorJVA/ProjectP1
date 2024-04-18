@@ -1,8 +1,11 @@
-{% extends "baseClient.html" %} {% block content %}
+{% extends "baseClient.html" %}
+{% block content %}
 <h1>Create appointment</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Solicitar Cita</button>
-</form>
+<div class="container-appointment">
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Make appointment</button>
+  </form>
+</div>
 {% endblock content %}
