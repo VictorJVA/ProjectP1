@@ -73,7 +73,7 @@ def createAppointment(request, id_cliente):
     client = Client.objects.get(pk=id_cliente)
     
     if request.method == 'POST':
-        form = AppointmentForm(request.POST)
+        form = AppointmentForm(client_id=id_cliente, data=request.POST)
         if form.is_valid():
             form.save()
             # Aquí podrías agregar un mensaje de éxito o realizar cualquier otra acción necesaria
