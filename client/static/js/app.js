@@ -7,4 +7,5 @@ window.abrir_modal_crear = function(url) {
 
 jQuery(document).ready(function($) {
   // Otras operaciones que puedas tener dentro de tu función jQuery(document).ready()
+  
 });

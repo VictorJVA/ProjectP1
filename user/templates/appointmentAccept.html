@@ -1,8 +1,8 @@
 {% extends 'baseUser.html'%} {% block content %}
-{% csrf_token %}
 <h1>view pets</h1>
 {% for appointment in appointment %}
 <body>
+<input type="hidden" id="csrfToken" value="{{ csrf_token }}">
 <div class="card-container">
   <div class="card">
     <h3 >Date: <span>{{ appointment.date }}</span></h3>
@@ -13,19 +13,22 @@
     <br />
     <p >Reason: <span>{{ appointment.reason_appointment }}</span></p>
     <br />
-    <a rel="" href="/appointmentAccept/{{client.vet_id}}/{{appointment.appointment_id}}"
+
+    <!-- <a rel="" href="/appointmentAccept/{{client.vet_id}}/{{appointment.appointment_id}}"
       ><i class="bx bxs-dog"></i>
       <span class="nav-item">Accept appointment</span>
-    </a>
-    <!-- <button href="/appointmentAccept/{{client.vet_id}}/{{appointment.appointment_id}}" >Accept appointment</button> -->
+    </a> -->
+
+    <button id="updateButton" data-value="{{appointment.appointment_id}}">Accept appointment</button>
   </div>
 </div>
-<!-- <script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('updateButton').addEventListener('click', function() {
         var valueToSend = this.getAttribute('data-value');
+        var csrftoken = document.getElementById('csrfToken').value;
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/appointmentAccept/'+str(valueTosend)+"/", true);
+        xhr.open('POST', '/update-field/', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4) {
@@ -44,7 +47,7 @@
         xhr.send(JSON.stringify({ value: valueToSend }));
     });
 });
-    </script> -->
+    </script>
 </body>
 {% endfor %}
 {% endblock content %}
