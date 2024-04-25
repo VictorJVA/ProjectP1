@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import json
 from django.http import JsonResponse
+from .forms import AppointmentActionForm
 from Client_User.models import Report,File,Appointment,Client,Vet,Log_in,Pets
 
 
@@ -70,17 +71,31 @@ def appointmentInside(request, user_id):
 
 
 def clinicalUserView(request, user_id, pet_id):
-    pets=None
+    pet=None
     client=Vet.objects.get(vet_id=user_id)
     
     if(Appointment.objects.filter(vet_id=user_id).filter(appointment_accepted=True)!=None):
-        pets = Pets.objects.get(pet_id=pet_id) 
+        pet = Pets.objects.filter(pet_id=pet_id) 
 
-    return render(request, 'clinicalUserView.html', {'pets': pets,'client':client})
+    return render(request, 'clinicalUserView.html', {'pets': pet,'client':client})
 
 def appointmentAccept(request, user_id, appointment_id):
-    if(request.method=='POST'):
-        update_field
+    if request.method == 'POST':
+        form = AppointmentActionForm(request.POST)
+        if form.is_valid():
+            appointment_id = form.cleaned_data['appointment_id']
+            action = form.cleaned_data['action']
+            # Perform the action based on the selected choice
+            if action == 'accept':
+                appointment = Appointment.objects.get(pk=appointment_id)
+                appointment.appointment_accepted = True
+                appointment.save()
+            elif action == 'reject':
+                appointment = Appointment.objects.get(pk=appointment_id)
+                appointment.appointment_accepted = False
+                appointment.save()
+    else:
+        form = AppointmentActionForm()
     # if(isinstance(appointment_id, int)):
     #     Appointment.objects.filter(pk=appointment_id).update(appointment_accepted=True)
     appointment= Appointment.objects.filter(vet_id=user_id).filter(appointment_accepted=False)

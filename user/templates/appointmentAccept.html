@@ -17,12 +17,20 @@
     <!-- <a rel="" href="/appointmentAccept/{{client.vet_id}}/{{appointment.appointment_id}}"
       ><i class="bx bxs-dog"></i>
       <span class="nav-item">Accept appointment</span>
+    
     </a> -->
 
-    <button id="updateButton" data-value="{{appointment.appointment_id}}">Accept appointment</button>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Accept</button>
+    </form>
+
+    <!-- <button id="updateButton" data-value="{{appointment.appointment_id}}">Accept appointment</button> -->
   </div>
 </div>
-<script>
+
+<!-- <script>
     document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('updateButton').addEventListener('click', function() {
         var valueToSend = this.getAttribute('data-value');
@@ -47,7 +55,7 @@
         xhr.send(JSON.stringify({ value: valueToSend }));
     });
 });
-    </script>
+    </script> -->
 </body>
 {% endfor %}
 {% endblock content %}
