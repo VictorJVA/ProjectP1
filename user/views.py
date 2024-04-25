@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import json
+import json, pdb
 from django.http import JsonResponse
 from .forms import AppointmentActionForm
 from Client_User.models import Report,File,Appointment,Client,Vet,Log_in,Pets
@@ -99,7 +99,10 @@ def appointmentAccept(request, user_id, appointment_id):
     # if(isinstance(appointment_id, int)):
     #     Appointment.objects.filter(pk=appointment_id).update(appointment_accepted=True)
     appointment= Appointment.objects.filter(vet_id=user_id).filter(appointment_accepted=False)
-    return render(request,'appointmentAccept.html',{'client':Vet.objects.get(pk=user_id),'appointment':appointment})
+    return render(request,'appointmentAccept.html',{'client':user_id,'appointment':appointment})
+
+
+
 def update_field(request):
     if request.method == 'POST':
         data = json.loads(request.body)
