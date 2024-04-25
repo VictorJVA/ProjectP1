@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import json
+import json, pdb
 from django.http import JsonResponse
 from Client_User.models import Report,File,Appointment,Client,Vet,Log_in,Pets
 
@@ -71,12 +71,14 @@ def appointmentInside(request, user_id):
 
 def clinicalUserView(request, user_id, pet_id):
     pets=None
-    client=Vet.objects.get(vet_id=user_id)
+    user=Vet.objects.get(vet_id=user_id)
     
     if(Appointment.objects.filter(vet_id=user_id).filter(appointment_accepted=True)!=None):
-        pets = Pets.objects.get(pet_id=pet_id) 
+        pets = Pets.objects.get(pet_id=pet_id)
+         
+    # pdb.set_trace()
 
-    return render(request, 'clinicalUserView.html', {'pets': pets,'client':client})
+    return render(request, 'clinicalUserView.html', {'pet': pets,'client':user})
 
 def appointmentAccept(request, user_id, appointment_id):
     user_id = Vet.objects.get(pk=user_id)
