@@ -9,17 +9,16 @@ class PetForm(forms.ModelForm):
         # fields = '__all__'
         
 class AppointmentForm(forms.ModelForm):
-    def __init__(self, client_id, *args, **kwargs):
+    def __init__(self, vet_id, *args, **kwargs):
         super(AppointmentForm, self).__init__(*args, **kwargs)
-        self.fields['pet_id'].queryset = Pets.objects.filter(client_id=client_id)
-        self.fields['vet_id'].queryset = Vet.objects.all()
+        self.fields['time'].widget.choices = [(time, time.strftime('%H:%M')) for time in vet_id.available_time_slots(datetime.now().date())]
 
     class Meta:
         model = Appointment
         fields = ['pet_id', 'vet_id', 'date', 'time', 'reason_appointment']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
-            'time': forms.Select(choices=[(f'{hour:02d}:00', f'{hour:02d}:00') for hour in range(24)]),
+            'time': forms.Select(),
             'pet_id': forms.Select(),
-            'vet_id': forms.Select(choices=[(vet.pk, vet) for vet in Vet.objects.all()]),
+            'vet_id': forms.Select(),
         }
