@@ -78,6 +78,21 @@ def createAppointment(request, id_cliente):
     if request.method == 'POST':
         form = AppointmentForm(client_id=id_cliente, data=request.POST)
         if form.is_valid():
+            time = form.cleaned_data['time']
+            print(time)
+            date = form.cleaned_data['date']
+            print(date)
+            vet = form.cleaned_data['vet_id']
+            accepted = Appointment.objects.filter(appointment_accepted = False).filter(vet_id=vet).filter(date = date).filter(time = time)
+            print(accepted.first())
+            if (accepted.first() != None):
+                context = { 
+                        'form': form,
+                        'client':client,
+                        'accepted':True,
+                        }
+                return render(request, 'createAppointment.html', context)
+            
             form.save()
             # Aquí podrías agregar un mensaje de éxito o realizar cualquier otra acción necesaria
             form = AppointmentForm(client_id=id_cliente)  # Vaciar el formulario después de enviar los datos exitosamente
@@ -87,7 +102,9 @@ def createAppointment(request, id_cliente):
     context = {
         'form': form,
         'client':client,
-    }    
+        
+    }
+    # pdb.set_trace()
 
     return render(request, 'createAppointment.html', context)
 
