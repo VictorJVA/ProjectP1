@@ -173,7 +173,7 @@
   text-transform: uppercase;
   background-color: lightslategray;
   color: white;
-  width: 1800px;
+  /* width: 1800px; */
   border-radius: 0.6rem;
   padding: 0 2rem;
 }
@@ -236,7 +236,7 @@
 }
 
 /* -------------------------------------------- */
-/* PET REGISTER */
+/* PET REGISTER  NOOOOOOOOOOOOOO*/
 .register-pet{
   /* background-color: red; */
   padding: 10px;
@@ -269,6 +269,7 @@
 /* PET REGISTER */
 .container-form {
   margin: 1rem;
+  /* background-color: red; */
 }
 
 .container-form form {

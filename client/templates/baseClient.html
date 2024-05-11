@@ -33,7 +33,8 @@
         <i class="bx bx-menu" id="btn"></i>
       </div>
       <div class="user">
-        <img class="user-img" src="{{ client.image.url }}" alt="photo owner" />
+        <a href="/homeClient/{{client.client_id}}"><img class="user-img" src="{{ client.image.url }}" alt="photo owner" /></a>
+        
         <div>
           <p class="bold">
             <a href="/homeClient/{{client.client_id}}">{{client.name}}</a>
