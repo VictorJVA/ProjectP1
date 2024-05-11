@@ -334,6 +334,7 @@
 .container-appointment .form {
   justify-content: center;
   align-items: center;
+  position: sticky;
 }
 
 .container-appointment .form h2{
