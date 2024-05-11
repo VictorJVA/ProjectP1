@@ -318,14 +318,44 @@
 
 .container-appointment {
   margin: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  /* justify-content: center;
+  align-items: center;
+  grid-gap: 10px; */
 }
 
+/* .container-appointment .form{
+  justify-content: center;
+  align-items: center;
+  grid-gap: 10px;
+} */
+
+.container-appointment .form {
+  justify-content: center;
+  align-items: center;
+}
+
+.container-appointment .form h2{
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: bold;
+}
+
+
+
+
 .container-appointment form {
-  width: 400px;
+  /* width: 400px; */
+  width: 90%;
   padding: 16px;
   border-radius: 10px;
   /* margin: auto; */
   background-color: rgba(119, 136, 153, 0.145);
+  justify-content: center;
+  align-items: center;
+
 
 }
 
@@ -363,4 +393,55 @@
   cursor: pointer;
 }
 
+.appointment{
+  /* background-color: red; */
+  width: 100%;
+  
+}
+
+.appointment h2{
+  /* background-color: red; */
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+}
+
+.appointment .card-appointment{
+
+  width: 70%;
+  /* padding: 25px; */
+
+  
+  /* background-color: green; */
+}
+
+
+.appointment .card-appointment .card-content-appointment{
+  /* background-color: blue; */
+  border: 1.5px solid black;
+  border-radius: 10px;
+  padding: 12px;
+    /* padding: 25px; */
+}
+
+
+.appointment .card-appointment .card-content-appointment .btn-appointment{
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 100%;
+  padding: 8px 16px;
+  /* margin-top: 32px; */
+  border: 1px solid lightslategray;
+  border-radius: 5px;
+  display: block;
+  color: white;
+  background-color: lightslategray;
+}
+
+.appointment .card-appointment .card-content-appointment .btn-appointment:hover{
+  cursor: pointer;
+
+}
 
