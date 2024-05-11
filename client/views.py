@@ -74,34 +74,19 @@ from django.http import Http404
 
 def createAppointment(request, id_cliente):
     client = Client.objects.get(pk=id_cliente)
-
+    
     if request.method == 'POST':
-        form = AppointmentForm(data=request.POST)
+        form = AppointmentForm(client_id=id_cliente, data=request.POST)
         if form.is_valid():
             form.save()
             # Aquí podrías agregar un mensaje de éxito o realizar cualquier otra acción necesaria
-            form = AppointmentForm()  # Vaciar el formulario después de enviar los datos exitosamente
+            form = AppointmentForm(client_id=id_cliente)  # Vaciar el formulario después de enviar los datos exitosamente
     else:
-        pets = Pets.objects.filter(client_id=client)
-        if not pets.exists():
-            raise Http404("Este cliente no tiene mascotas asociadas.")
-        
-        # Obtener la primera mascota del cliente para seleccionar un veterinario
-        pet = pets.first()
-
-        # Buscar el historial médico de la mascota para encontrar el veterinario asociado
-        medical_history = Medical_history.objects.filter(pet_id=pet).first()
-        if not medical_history:
-            raise Http404("No se encontró historial médico para esta mascota.")
-
-        # Obtener el veterinario asociado al historial médico
-        vet = medical_history.vet
-
-        form = AppointmentForm(vet_id=vet)
+        form = AppointmentForm(client_id= id_cliente)
 
     context = {
         'form': form,
-        'client': client,
+        'client':client,
     }    
 
     return render(request, 'createAppointment.html', context)

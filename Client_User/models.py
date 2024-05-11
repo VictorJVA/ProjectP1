@@ -1,6 +1,5 @@
 # Create your models here.
 from django.db import models
-from datetime import datetime, timedelta
 # Create your models here.
 class Client(models.Model):
     client_id= models.AutoField(max_length=None,primary_key=True)
@@ -63,13 +62,6 @@ class Vet(models.Model):
 #QUICK SEPARATION
     def __str__(self):
         return self.name
-    
-    def available_time_slots(self, date):
-        appointments = Appointment.objects.filter(vet_id=self, date=date)
-        taken_times = [appointment.time for appointment in appointments]
-        all_times = [datetime.strptime(f'{hour:02d}:00', '%H:%M').time() for hour in range(24)]
-        available_times = [time for time in all_times if time not in taken_times]
-        return available_times
 
 
 class Appointment(models.Model):
