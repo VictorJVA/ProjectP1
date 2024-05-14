@@ -356,6 +356,7 @@
   background-color: rgba(119, 136, 153, 0.145);
   justify-content: center;
   align-items: center;
+  margin: auto;
 
 
 }
@@ -411,6 +412,7 @@
 .appointment .card-appointment{
 
   width: 70%;
+  margin: auto;
   /* padding: 25px; */
 
   
