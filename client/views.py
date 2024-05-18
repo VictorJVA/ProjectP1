@@ -119,12 +119,36 @@ def vetInformation(request, id_cliente):
     
     return render(request, 'vetInformation.html', context)
 
+
 def createAppointment(request, id_cliente):
     client = Client.objects.get(pk=id_cliente)
+    pets = Pets.objects.filter(client_id=client)
+    
+    
+    appointment = []
+    for i in pets:
+        appointment.append(Appointment.objects.filter(pet_id=i.pet_id).filter(date__gte = datetime.now()))
     
     if request.method == 'POST':
         form = AppointmentForm(client_id=id_cliente, data=request.POST)
         if form.is_valid():
+            time = form.cleaned_data['time']
+            print(time)
+            date = form.cleaned_data['date']
+            print(date)
+            vet = form.cleaned_data['vet_id']
+            accepted = Appointment.objects.filter(appointment_accepted = False).filter(vet_id=vet).filter(date = date).filter(time = time)
+            # print(accepted.first())
+            # fecha_objeto = datetime.strptime(date, "%Y-%m-%d")
+            if (accepted.first() != None or date < datetime.now().date()):
+                context = { 
+                        'form': form,
+                        'client':client,
+                        'accepted':True,
+                        'appointment': appointment,
+                        }
+                return render(request, 'createAppointment.html', context)
+            
             form.save()
             # Aquí podrías agregar un mensaje de éxito o realizar cualquier otra acción necesaria
             form = AppointmentForm(client_id=id_cliente)  # Vaciar el formulario después de enviar los datos exitosamente
@@ -134,6 +158,11 @@ def createAppointment(request, id_cliente):
     context = {
         'form': form,
         'client':client,
-    }    
+        'appointment': appointment,
+        
+    }
+    # pdb.set_trace()
 
     return render(request, 'createAppointment.html', context)
+
+

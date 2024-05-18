@@ -2,10 +2,38 @@
 {% block content %}
 <h1>Create appointment</h1>
 <div class="container-appointment">
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Make appointment</button>
-  </form>
+  <div class="form">
+    <h2>Create</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if accepted %}
+      <div>
+        <p style="color: white; background-color:red; border-radius: 4px; padding: 2px; text-align: center; text-transform:uppercase ">This hour in this date is not available</p>
+      </div>
+      {% endif%}
+      <button type="submit">Make appointment</button>
+    </form>
+  </div>
+  <div class="appointment">
+    <h2>my appointments</h2>
+    <div class="card-appointment">
+      {% for appointment in appointment%}
+      {% for appointment in appointment%}
+      <div class="card-content-appointment">
+        <p>Pet Name: <span>{{ appointment.pet_id.name}}</span></p>
+        <p>Date: <span>{{ appointment.date }}</span></p>
+        <p>Time: <span>{{ appointment.time }}</span></p>
+        <p>Reason appointment: <span>{{ appointment.reason_appointment }}</span></p>
+        <br />
+        <button class="btn-appointment">see more</button>
+      </div>
+      <br />
+      {%endfor%}
+      {%endfor%}
+    </div>
+
+  </div>
+
 </div>
 {% endblock content %}
