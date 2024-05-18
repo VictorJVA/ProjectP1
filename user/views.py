@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import json, pdb
 from django.http import JsonResponse
-from .forms import AppointmentActionForm
+from .forms import AppointmentActionForm,AppointmentForm
 from Client_User.models import Report,File,Appointment,Client,Vet,Log_in,Pets
 
 
@@ -52,7 +52,6 @@ def save(request):
 def appointmentOutside(request, user_id):
     appointment = list(Appointment.objects.filter(vet_id=user_id).values_list('pet_id',flat=True).order_by('pet_id').distinct())
     newlist=[]
-    print(appointment)
     for i in appointment:
         newlist.append(Pets.objects.get(pk=i).client_id)
 
@@ -98,10 +97,28 @@ def appointmentAccept(request, user_id, appointment_id):
         form = AppointmentActionForm()
     # if(isinstance(appointment_id, int)):
     #     Appointment.objects.filter(pk=appointment_id).update(appointment_accepted=True)
+    client=Vet.objects.get(vet_id=user_id)
     appointment= Appointment.objects.filter(vet_id=user_id).filter(appointment_accepted=False)
-    return render(request,'appointmentAccept.html',{'client':user_id,'appointment':appointment})
+    return render(request,'appointmentAccept.html',{'client':client,'appointment':appointment})
 
+def createAppointment(request, id_cliente):
+    client = Vet.objects.get(pk=id_cliente)
+    
+    if request.method == 'POST':
+        form = AppointmentForm(client_id=id_cliente, data=request.POST)
+        if form.is_valid():
+            form.save()
+            # Aquí podrías agregar un mensaje de éxito o realizar cualquier otra acción necesaria
+            form = AppointmentForm(client_id=id_cliente)  # Vaciar el formulario después de enviar los datos exitosamente
+    else:
+        form = AppointmentForm(client_id= id_cliente)
 
+    context = {
+        'form': form,
+        'client':client,
+    }    
+
+    return render(request, 'vetcreateAppointment.html', context)
 
 def update_field(request):
     if request.method == 'POST':
@@ -110,7 +127,7 @@ def update_field(request):
 
         # Assuming you have a model named YourModel with a field named 'field_to_update'
         # Retrieve the instance of the model you want to update
-        instance = Appointment.objects.filter(pk=value_to_update).update(appointment_accepted=True)  # Adjust this according to your model
+        Appointment.objects.filter(pk=value_to_update).update(appointment_accepted=True)  # Adjust this according to your model
         # Return a JSON response indicating success
         return JsonResponse({'success': True})
     else:

@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <h1>Submit important user data</h1>
+  <h1>Submit important Vet data</h1>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="hidden" name="log_id" value="{{ log_id }}">
+    <input type="hidden" name="average_score" value=5>
     {{ form.as_p }}
     <button type="submit">Submit data</button>
   </form>

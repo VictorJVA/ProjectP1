@@ -6,6 +6,56 @@ from .forms import *
 import pdb
 from datetime import datetime
 
+from rest_framework.generics import GenericAPIView
+from rest_framework.mixins import RetrieveModelMixin
+from rest_framework.permissions import IsAuthenticated
+from web_project.api.UserSerializer import UserSerializer
+
+#----------------------------------------------------------------------------------------------
+import requests
+def my_view(request):
+    url = "http://localhost:8000/api/v1/me"  # Your API endpoint
+    jwt_token=None
+    jwt_token = request.GET.get('access_token')
+    headers = {
+        "Authorization": f"Bearer {jwt_token}"
+    }
+    
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        data = response.json()
+        print(data.get('uuid'))
+        user=data.get('uuid')
+        check= Log_in.objects.filter(key=user).first()
+        print(data)
+        if check==None:
+            Log_in.objects.create(key=user)
+            return redirect("/choice/?access_token="+jwt_token)
+        else:
+            return redirect("/choice/?access_token="+jwt_token)
+    else:
+        data=None
+    return render(request, 'test.html', {'data': data,'token':jwt_token})
+
+#----------------------authtest
+
+class UserProfileAPIView(RetrieveModelMixin, GenericAPIView):
+    serializer_class = UserSerializer
+    permission_classes = (IsAuthenticated, )
+
+    def get_object(self):
+        return self.request.user
+
+    def get(self, request, *args, **kwargs):
+        
+        """
+        User profile
+        Get profile of current logged in user.
+        """
+        return self.retrieve(request, *args, **kwargs)
+
+#------------------------auth
+
 def homeClient(request, id_cliente):
 
     client = Client.objects.get(pk=id_cliente)
@@ -87,7 +137,3 @@ def createAppointment(request, id_cliente):
     }    
 
     return render(request, 'createAppointment.html', context)
-
-        
-
-

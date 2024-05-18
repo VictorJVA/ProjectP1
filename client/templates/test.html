@@ -1,0 +1,54 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+</head>
+<body>
+    <!-- Your HTML content here -->
+    <h1>Log In or Sign Up unsuccessful</h1>
+    <h1>{{token}}</h1>
+    <!-- JavaScript code to extract access token from URL fragment and send it to the server -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Get the URL fragment
+            var fragment = window.location.hash.substr(1);
+
+            // Parse the fragment to extract the access token
+            var params = new URLSearchParams(fragment);
+            var accessToken = params.get('access_token');
+
+            // Send the access token to your Django server using AJAX
+            $.ajax({
+                url: '/test/',
+                method: 'GET',
+                data: { access_token: accessToken },
+                success: function(response, textStatus, xhr) {
+                // Check if the response is a redirect (status code 302)
+                if (xhr.status === 302) {
+                    // Get the redirect URL from the Location header
+                    var redirectUrl = xhr.getResponseHeader('Location');
+                    
+                    // Redirect the client to the specified URL
+                    window.location.href = redirectUrl;
+                } else {
+                    // Check if the response is HTML content
+                    var contentType = xhr.getResponseHeader('Content-Type');
+                    if (contentType && contentType.indexOf('text/html') !== -1) {
+                        // Replace the current page content with the response
+                        $('body').html(response);
+                    } else {
+                        // Handle other types of responses (e.g., display data)
+                        console.log(response);
+                    }
+                }
+            },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.error(error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

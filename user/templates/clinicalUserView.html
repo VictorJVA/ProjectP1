@@ -7,11 +7,16 @@
     <div>
       <h3>Name: <span>{{ pet.name }}</span></h3>
       <br />
-      <h3>Race: <span>{{ pet.race }}</span></h3>
+      <h3>Breed: <span>{{pet.race}}</span></h3>
       <br />
       <h3>Birth Date: <span>{{ pet.birth_date }}</span></h3>
       <br />
-      <h3>Gender: <span>{{ pet.gender }}</span></h3>
+
+      {%if pet.gender %}
+      <h3>Gender: <span>Male</span></h3>
+      {%else%}
+      <h3>Gender: <span>Female</span></h3>
+      {%endif%}
       <br />
       <h3>Allergies: <span>{{ pet.allergies }}</span></h3>
     </div>
@@ -20,10 +25,12 @@
     <!-- Contenedor grande con fondo blanco -->
     <div class="vaccine-card-container">
       <!-- Contenedores pequeños con fondo lightslategrey -->
+      {%for Vaccine in Vaccines%}
       <div class="vaccine-card">
-        <h3>Vaccine:</h3>
-        <h3>Vaccine Date:</h3>
+        <h3>Vaccine: {{Vaccine.vaccine.vaccine_name}}</h3>
+        <h3>Vaccine Date:{{Vaccine.vaccine_date}}</h3>
       </div>
+      {%endfor%}
       <!-- Repite esta estructura para cada tarjeta de vacuna -->
     </div>
   </div>

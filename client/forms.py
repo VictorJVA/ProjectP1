@@ -23,3 +23,4 @@ class AppointmentForm(forms.ModelForm):
             'pet_id': forms.Select(),
             'vet_id': forms.Select(choices=[(vet.pk, vet) for vet in Vet.objects.all()]),
         }
+        

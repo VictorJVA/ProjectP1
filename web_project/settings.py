@@ -1,3 +1,5 @@
+import json
+from urllib import request
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -14,6 +16,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+#-----------------------------------
+
+
 BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 Fileroot=os.path.join(BASE_DIR,'report')
@@ -25,6 +30,40 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
+#-------------------------------------------------------
+
+COGNITO_AWS_REGION = 'us-east-2'
+COGNITO_USER_POOL = 'us-east-2_Eo0AL3rU9'
+# Provide this value if `id_token` is used for authentication (it contains 'aud' claim).
+# `access_token` doesn't have it, in this case keep the COGNITO_AUDIENCE empty
+COGNITO_AUDIENCE = None
+COGNITO_POOL_URL = None  # will be set few lines of code later, if configuration provided
+
+rsa_keys = {}
+# To avoid circular imports, we keep this logic here.
+# On django init we download jwks public keys which are used to validate jwt tokens.
+# For now there is no rotation of keys (seems like in Cognito decided not to implement it)
+if COGNITO_AWS_REGION and COGNITO_USER_POOL:
+    COGNITO_POOL_URL = 'https://cognito-idp.{}.amazonaws.com/{}'.format(COGNITO_AWS_REGION, COGNITO_USER_POOL)
+    pool_jwks_url = pool_jwks_url = COGNITO_POOL_URL + '/.well-known/jwks.json'
+    jwks = json.loads(request.urlopen(pool_jwks_url).read())
+    rsa_keys = {key['kid']: json.dumps(key) for key in jwks['keys']}
+
+JWT_AUTH = {
+    'JWT_PAYLOAD_GET_USERNAME_HANDLER': 'web_project.api.jwt.get_username_from_payload_handler',
+    'JWT_DECODE_HANDLER': 'web_project.api.jwt.cognito_jwt_decode_handler',
+    'JWT_PUBLIC_KEY': rsa_keys,
+    'JWT_ALGORITHM': 'RS256',
+    'JWT_AUDIENCE': COGNITO_AUDIENCE,
+    'JWT_ISSUER': COGNITO_POOL_URL,
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+}
+# #--------------------------------------------------------------
+# SECURE_SSL_REDIRECT = False
+# SESSION_COOKIE_SECURE = False
+# CSRF_COOKIE_SECURE = False
+ALLOWED_HOSTS = ['justpetpals.com', 'localhost', '107.20.131.186']
+AUTH_USER_MODEL = 'Client_User.User'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -33,9 +72,19 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        # 'web_project.api.permissions.DenyAny',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+            ),
+}
 
 # Application definition
 
@@ -49,6 +98,12 @@ INSTALLED_APPS = [
     'Client_User',
     'client',
     'user',
+    'rest_framework',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.RemoteUserBackend',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +112,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]

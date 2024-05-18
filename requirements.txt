@@ -7,3 +7,7 @@ numpy
 datetime
 boto3
 python-jose
+djangorestframework-jwt
+djangorestframework
+cryptography
+core

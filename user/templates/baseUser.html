@@ -22,32 +22,41 @@
       <div class="user">
         <img class="user-img" src="{{ client.image.url }}" alt="photo vet" />
         <div>
-          <p class="bold">{{client.name}}</p>
+          <p class="bold">
+            <a href="/appointmentOutside/{{client.vet_id}}">{{client.name}}</a>
+          </p>
           <p>Vet</p>
         </div>
       </div>
       <ul>
         <li>
-          <a href="#">
+          <a href="/vetcreateappointment/{{client.vet_id}}/">
             <i class="bx bx-book-add"></i>
             <span class="nav-item">create appointment</span>
           </a>
           <span class="tooltip">create appointment</span>
         </li>
         <li>
-          <a href="#"
+          <a href="/appointmentInside/{{client.vet_id}}/"
             ><i class="bx bx-show-alt"></i>
-            <span class="nav-item">view appointment</span>
+            <span class="nav-item">view appointments</span>
           </a>
-          <span class="tooltip">view appointment</span>
+          <span class="tooltip">view appointments</span>
         </li>
         <li>
+          <a href="/appointmentAccept/{{client.vet_id}}/0"
+            ><i class="bx bx-show-alt"></i>
+            <span class="nav-item">Accept requests</span>
+          </a>
+          <span class="tooltip"></span>
+        </li>
+        <!-- <li>
           <a href="#"
             ><i class="bx bxs-like"></i>
             <span class="nav-item">view ratings</span>
           </a>
           <span class="tooltip">view ratings</span>
-        </li>
+        </li> -->
 
         <li>
           <a href="#"

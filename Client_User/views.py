@@ -7,7 +7,9 @@ import io
 import urllib, base64
 from django.http import HttpResponse
 from .models import Report,File,Appointment,Client,Vet,Log_in,Pets
+from .forms import ClientForm,Vetform
 
+import requests
 def hello_there(request, name):
     print(request.build_absolute_uri()) #optional
     return render(
@@ -18,9 +20,74 @@ def hello_there(request, name):
             'date': datetime.now()
         }
     )
-
+def choice(request):
+    return render(request,"hello/choice.html",{'token':request.GET.get('access_token')})
 def login(request):
-    return render(request, "hello/login.html")
+    url = "http://localhost:8000/api/v1/me"
+    token=request.GET.get('access_token')
+    headers = {
+        "Authorization": f"Bearer {token}"
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        data = response.json()
+        user=data.get('uuid')
+        check= Log_in.objects.get(key=user)
+    else:
+        redirect("test")
+    cost= Client.objects.filter(log_id=check)
+    if(cost.first()!=None):
+        return redirect('http://localhost:8000/homeClient/'+str(cost.first().client_id)+"/?access_token="+token)
+    if request.method == 'POST':
+        form = ClientForm(request.POST, request.FILES)
+        if form.is_valid():
+            
+            client = form.save(commit=False)
+            client.log_id = check # Assign the log_id from the URL to the form
+            client.save()
+            return redirect('http://localhost:8000/homeClient/'+str(client.client_id)+"/?access_token="+token)  # Redirect to success page after successful form submission
+    else:
+        form = ClientForm()
+    return render(request, "hello/login.html",{'form': form, 'log_id': check.log_id})
+def hello_there(request, name):
+    print(request.build_absolute_uri()) #optional
+    return render(
+        request,
+        'hello/hello_there.html',
+        {
+            'name': name,
+            'date': datetime.now()
+        }
+    )
+def choice(request):
+    return render(request,"hello/choice.html",{'token':request.GET.get('access_token')})
+def login2(request):
+    url = "http://localhost:8000/api/v1/me"
+    token=request.GET.get('access_token')
+    headers = {
+        "Authorization": f"Bearer {token}"
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        data = response.json()
+        user=data.get('uuid')
+        check= Log_in.objects.get(key=user)
+    else:
+        redirect("test")
+    cost= Vet.objects.filter(log_id=check)
+    if(cost.first()!=None):
+        return redirect('http://localhost:8000/appointmentOutside/'+str(cost.first().vet_id)+"/?access_token="+token)
+    if request.method == 'POST':
+        form = Vetform(request.POST, request.FILES)
+        if form.is_valid():
+            
+            client = form.save(commit=False)
+            client.log_id = check # Assign the log_id from the URL to the form
+            client.save()
+            return redirect('http://localhost:8000/appointmentOutside/'+str(client.vet_id)+"/?access_token="+token)  # Redirect to success page after successful form submission
+    else:
+        form = Vetform()
+    return render(request, "hello/login2.html",{'form': form, 'log_id': check.log_id})
 
 def appointmentCreate(request):
     return render(request,'hello/appointmentCreate.html')
