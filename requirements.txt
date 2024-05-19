@@ -9,10 +9,10 @@ boto3
 python-jose
 cryptography==2.8
 requests
-djangorestframework==3.10.3
-djangorestframework-jwt==1.11.0
+djangorestframework==3.15.1
+djangorestframework-jwt
 pycparser==2.19
-PyJWT==1.7.1
+PyJWT==2.8.0
 pytz==2019.2
 six==1.12.0
 sqlparse
