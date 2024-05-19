@@ -14,17 +14,10 @@
     <p >Reason: <span>{{ appointment.reason_appointment }}</span></p>
     <br />
 
-    <a rel="" href="/appointmentAccept/{{client.vet_id}}/{{appointment.appointment_id}}"
-      ><i class="bx bxs-dog"></i>
-      <span class="nav-item">Accept appointment</span>
-    
+    <a rel="" href="/appointmentAccept/{{client.vet_id}}/{{appointment.appointment_id}}" style="color:black; background-color:lightslategray; border-radius:8px; margin-top:12px"
+      ><p style="align-items: center; display:flex; justify-content:center; padding:5px; color: white; text-transform:uppercase">Accept</p>
     </a>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Accept</button>
-    </form>
 
     <!-- <button id="updateButton" data-value="{{appointment.appointment_id}}">Accept appointment</button> -->
   </div>

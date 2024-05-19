@@ -79,24 +79,25 @@ def clinicalUserView(request, user_id, pet_id):
     return render(request, 'clinicalUserView.html', {'pets': pet,'client':client})
 
 def appointmentAccept(request, user_id, appointment_id):
-    if request.method == 'POST':
-        form = AppointmentActionForm(request.POST)
-        if form.is_valid():
-            appointment_id = form.cleaned_data['appointment_id']
-            action = form.cleaned_data['action']
-            # Perform the action based on the selected choice
-            if action == 'accept':
-                appointment = Appointment.objects.get(pk=appointment_id)
-                appointment.appointment_accepted = True
-                appointment.save()
-            elif action == 'reject':
-                appointment = Appointment.objects.get(pk=appointment_id)
-                appointment.appointment_accepted = False
-                appointment.save()
-    else:
-        form = AppointmentActionForm()
-    # if(isinstance(appointment_id, int)):
-    #     Appointment.objects.filter(pk=appointment_id).update(appointment_accepted=True)
+    # if request.method == 'POST':
+    #     form = AppointmentActionForm(request.POST)
+    #     if form.is_valid():
+    #         appointment_id = form.cleaned_data['appointment_id']
+    #         action = form.cleaned_data['action']
+    #         # Perform the action based on the selected choice
+    #         if action == 'accept':
+    #             appointment = Appointment.objects.get(pk=appointment_id)
+    #             appointment.appointment_accepted = True
+    #             appointment.save()
+    #         elif action == 'reject':
+    #             appointment = Appointment.objects.get(pk=appointment_id)
+    #             appointment.appointment_accepted = False
+    #             appointment.save()
+    # else:
+    #     form = AppointmentActionForm()
+    
+    if(isinstance(appointment_id, int)):
+        Appointment.objects.filter(pk=appointment_id).update(appointment_accepted=True)
     client=Vet.objects.get(vet_id=user_id)
     appointment= Appointment.objects.filter(vet_id=user_id).filter(appointment_accepted=False)
     return render(request,'appointmentAccept.html',{'client':client,'appointment':appointment})
