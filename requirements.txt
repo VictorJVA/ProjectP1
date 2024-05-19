@@ -10,4 +10,4 @@ python-jose
 djangorestframework-jwt
 djangorestframework
 cryptography
-core
+#core
