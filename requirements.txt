@@ -9,6 +9,9 @@ boto3
 python-jose
 djangorestframework-jwt
 djangorestframework
-# cryptography
-# core
+cryptography==2.8 
 requests
+PyJWT==1.7.1
+pytz==2019.2
+six==1.12.0
+sqlparse==0.3.0
