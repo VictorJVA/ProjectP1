@@ -1,5 +1,5 @@
 python-dotenv
-django==5.0
+django==4.2.13
 git
 pillow==10.3.0
 matplotlib==3.6.3
