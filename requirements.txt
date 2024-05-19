@@ -1,5 +1,5 @@
 python-dotenv
-django
+django==5.0
 # git
 pillow
 matplotlib
@@ -7,7 +7,6 @@ numpy
 datetime
 boto3
 python-jose
-cffi==1.13.1
 cryptography==2.8
 requests
 djangorestframework==3.10.3
