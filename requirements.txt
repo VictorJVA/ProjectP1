@@ -11,3 +11,4 @@ djangorestframework-jwt
 djangorestframework
 # cryptography
 # core
+requests
