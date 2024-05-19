@@ -1,8 +1,8 @@
 python-dotenv
-django==4.2.13
+django
 git
-pillow==10.3.0
-matplotlib==3.6.3
+pillow
+matplotlib
 numpy
 datetime
 boto3
