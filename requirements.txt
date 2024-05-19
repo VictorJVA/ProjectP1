@@ -9,5 +9,5 @@ boto3
 python-jose
 djangorestframework-jwt
 djangorestframework
-cryptography
-core
+# cryptography
+# core
