@@ -1,6 +1,6 @@
 python-dotenv
 django
-git
+# git
 pillow
 matplotlib
 numpy
@@ -10,4 +10,4 @@ python-jose
 djangorestframework-jwt
 djangorestframework
 cryptography
-#core
+core
