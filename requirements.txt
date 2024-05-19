@@ -10,7 +10,7 @@ python-jose
 cryptography==42.0.7
 requests==2.31.0
 djangorestframework==3.15.1
-djangorestframework-jwt==1.1.1
+djangorestframework-jwt==1.19.2
 PyJWT==2.8.0
 pytz==2024.1
 six==1.16.0
