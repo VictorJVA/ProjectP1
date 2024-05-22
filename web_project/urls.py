@@ -52,11 +52,11 @@ urlpatterns = [
     path('appointmentViewClient/<int:id_pet>',client.appointmentViewClient,name='appointmentViewClient'),
     path('clinicalUserView/<int:user_id>/<int:pet_id>/',user.clinicalUserView,name= 'clinicalUserView' ),
     path('viewRate/<int:client_id>/',client.viewRate,name='viewRate'),
-    path('statistics/',views.stastistics,name="statistics"),
+    path('statistics/',views.statistics,name="statistics"),
     path('appointmentAccept/<int:user_id>/<int:appointment_id>/',user.appointmentAccept,name='appointmentAccept'),
     path('vetcreateappointment/<int:user_id>/',user.createAppointment,name='vetcreateappointment'), 
     path('update-field/', user.update_field, name='update-field'),
-    
+
 ]
 
 urlpatterns += static('/report/',document_root=os.path.join(BASE_DIR,'report'))
