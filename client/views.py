@@ -14,7 +14,7 @@ from web_project.api.UserSerializer import UserSerializer
 #----------------------------------------------------------------------------------------------
 import requests
 def my_view(request):
-    url = "https://justpetpals.com/api/v1/me"  # Your API endpoint
+    url = "https://www.justpetpals.com/api/v1/me"  # Your API endpoint
     jwt_token=None
     jwt_token = request.GET.get('access_token')
     headers = {

@@ -23,7 +23,7 @@ def hello_there(request, name):
 def choice(request):
     return render(request,"hello/choice.html",{'token':request.GET.get('access_token')})
 def login(request):
-    url = "https://justpetpals.com/api/v1/me"
+    url = "https://www.justpetpals.com/api/v1/me"
     token=request.GET.get('access_token')
     headers = {
         "Authorization": f"Bearer {token}"
@@ -37,7 +37,7 @@ def login(request):
         redirect("test")
     cost= Client.objects.filter(log_id=check)
     if(cost.first()!=None):
-        return redirect('https://justpetpals.com/homeClient/'+str(cost.first().client_id)+"/?access_token="+token)
+        return redirect('https://www.justpetpals.com/homeClient/'+str(cost.first().client_id)+"/?access_token="+token)
     if request.method == 'POST':
         form = ClientForm(request.POST, request.FILES)
         if form.is_valid():
@@ -45,7 +45,7 @@ def login(request):
             client = form.save(commit=False)
             client.log_id = check # Assign the log_id from the URL to the form
             client.save()
-            return redirect('https://justpetpals.com/homeClient/'+str(client.client_id)+"/?access_token="+token)  # Redirect to success page after successful form submission
+            return redirect('https://www.justpetpals.com/homeClient/'+str(client.client_id)+"/?access_token="+token)  # Redirect to success page after successful form submission
     else:
         form = ClientForm()
     return render(request, "hello/login.html",{'form': form, 'log_id': check.log_id})
@@ -62,7 +62,7 @@ def hello_there(request, name):
 def choice(request):
     return render(request,"hello/choice.html",{'token':request.GET.get('access_token')})
 def login2(request):
-    url = "https://justpetpals.com/api/v1/me"
+    url = "https://www.justpetpals.com/api/v1/me"
     token=request.GET.get('access_token')
     headers = {
         "Authorization": f"Bearer {token}"
@@ -76,7 +76,7 @@ def login2(request):
         redirect("test")
     cost= Vet.objects.filter(log_id=check)
     if(cost.first()!=None):
-        return redirect('https://justpetpals.com/appointmentOutside/'+str(cost.first().vet_id)+"/?access_token="+token)
+        return redirect('https://www.justpetpals.com/appointmentOutside/'+str(cost.first().vet_id)+"/?access_token="+token)
     if request.method == 'POST':
         form = Vetform(request.POST, request.FILES)
         if form.is_valid():
@@ -84,7 +84,7 @@ def login2(request):
             client = form.save(commit=False)
             client.log_id = check # Assign the log_id from the URL to the form
             client.save()
-            return redirect('https://justpetpals.com/appointmentOutside/'+str(client.vet_id)+"/?access_token="+token)  # Redirect to success page after successful form submission
+            return redirect('https://www.justpetpals.com/appointmentOutside/'+str(client.vet_id)+"/?access_token="+token)  # Redirect to success page after successful form submission
     else:
         form = Vetform()
     return render(request, "hello/login2.html",{'form': form, 'log_id': check.log_id})
