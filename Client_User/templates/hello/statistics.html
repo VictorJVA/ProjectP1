@@ -1,5 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics</title>
+    <style>
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
 
+        h1{
+            text-transform: uppercase;  
+            background-color: lightslategray;
+            border-radius: 7px;
+            color: white;
+        }
+    </style>
+</head>
 <body>
-    <h3>Pets by registration</h3>
-    <img src="data:image/png;base64,{{graphic}}" alt="Breeds per registration">
+    <div class="container">
+        <h1>Statistics of Registered Dogs</h1>
+        <img src="data:image/png;base64,{{ graphic }}" alt="Statistics Graphic">
+    </div>
 </body>
+</html>

@@ -1,0 +1,100 @@
+* {
+    text-transform: capitalize;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    /* background-color: red; */
+  }
+
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+.container{
+  /* padding: 5px; */
+  border: 2px solid black;
+  border-radius: 6px;
+}
+
+.container h1{
+  text-transform: uppercase;
+  background-color: lightslategray;
+  border-radius: 3px;
+  padding: 10px;
+  color: white;
+}
+
+form {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espacio entre los elementos del formulario */
+}
+
+form label {
+  margin-bottom: 5px; /* Espacio entre el label y el input */
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form input[type="file"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+form button {
+  align-self:center; /* Alinea el botón al inicio del formulario */
+  padding: 10px 20px;
+  background-color: lightslategray;
+  border-radius: 3px;
+  color: white;
+  border: none;
+  cursor: pointer;
+
+}
+
+form button:hover {
+  background-color: lightslategray;
+}
+
+.container .acceso{
+  padding: 12px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+}
+
+.container .acceso a{
+  padding: 12px;
+  text-decoration:none;
+  p{
+    padding: 5px;
+    background-color: lightslategray;
+    border: 2px solid lightslategray;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    justify-content: center;
+  }
+
+  p:hover{
+    cursor: pointer;
+  }
+}

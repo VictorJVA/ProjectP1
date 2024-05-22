@@ -101,41 +101,44 @@ def home(request):
 def about(request):
     return render(request, "hello/about.html")
 
-def stastistics(request):
+def statistics(request):
     matplotlib.use('Agg')
-    years= Pets.objects.values_list('race', flat=True).distinct().order_by('race')
+    races = Pets.objects.values_list('race', flat=True).distinct().order_by('race')
     
-    movie_counts_by_year= {}
-    for year in years:
-        if year:
-            movies_in_year=  Pets.objects.filter(race=year)
+    dog_counts_by_race = {}
+    for race in races:
+        if race:
+            dogs_in_race = Pets.objects.filter(race=race)
         else:
-             movies_in_year= Pets.objects.filter(race__isnull=True)
-             year="None"
-        count=movies_in_year.count()
-        movie_counts_by_year[year]=count
-    bar_width=0.5
-    bar_positions = range(len(movie_counts_by_year))
-    
+            dogs_in_race = Pets.objects.filter(race__isnull=True)
+            race = "None"
+        count = dogs_in_race.count()
+        dog_counts_by_race[race] = count
 
-    plt.bar(bar_positions ,movie_counts_by_year.values() , width=bar_width, align='center')
-    
-    plt.title('Registered dogs by types of breed')
-    plt.xlabel('Breed')
-    plt.ylabel('Number of dogs')
-    
-    plt.xticks(bar_positions, movie_counts_by_year.keys(),rotation=90)
-    
-    plt.subplots_adjust(bottom=0.3)
-    
-    buffer= io.BytesIO()
+    bar_width = 0.5
+    bar_positions = range(len(dog_counts_by_race))
+
+    plt.figure(figsize=(10, 6))
+    plt.bar(bar_positions, dog_counts_by_race.values(), width=bar_width, color='lightslategray', edgecolor='grey')
+
+    plt.title('Registered Dogs by Types of Breed', fontsize=16, fontweight='bold')
+    plt.xlabel('Breed', fontsize=14, fontweight='bold')
+    plt.ylabel('Number of Dogs', fontsize=14, fontweight='bold')
+
+    plt.xticks(bar_positions, dog_counts_by_race.keys(), rotation=45, ha='right', fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+    plt.tight_layout()
+
+    buffer = io.BytesIO()
     plt.savefig(buffer, format='png')
     buffer.seek(0)
     plt.close()
 
-    image_png= buffer.getvalue()
+    image_png = buffer.getvalue()
     buffer.close()
 
     graphic = base64.b64encode(image_png)
-    graphic=graphic.decode('utf-8')
-    return render(request,"hello/statistics.html",{'graphic':graphic})
+    graphic = graphic.decode('utf-8')
+    return render(request, "hello/statistics.html", {'graphic': graphic})

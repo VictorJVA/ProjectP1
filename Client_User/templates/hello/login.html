@@ -3,13 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="../../static/css/estilos/style.css">
+    <title>PetPal</title>
   </head>
-  <h1>Submit important user data</h1>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="hidden" name="log_id" value="{{ log_id }}">
-    {{ form.as_p }}
-    <button type="submit">Submit data</button>
-  </form>
+  <body>
+    <div class="container">
+      <h1>Submit important user data</h1>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="log_id" value="{{ log_id }}">
+        {{ form.as_p }}
+        <button type="submit">Submit data</button>
+      </form>
+    </div>
+  </body>
 </html>
