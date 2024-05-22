@@ -16,6 +16,22 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+#------------------------------------
+
+# Security settings
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
+SESSION_COOKIE_SECURE = True  # Ensure session cookies are only sent over HTTPS
+CSRF_COOKIE_SECURE = True  # Ensure CSRF cookies are only sent over HTTPS
+
+# Additional recommended security settings
+SECURE_HSTS_SECONDS = 31536000  # Enable HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
+SECURE_HSTS_PRELOAD = True  # Preload HSTS
+SECURE_BROWSER_XSS_FILTER = True  # Enable the browser's XSS filtering
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent the browser from guessing the content type
+
+
+
 #-----------------------------------
 
 
