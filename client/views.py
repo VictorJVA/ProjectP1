@@ -14,7 +14,7 @@ from web_project.api.UserSerializer import UserSerializer
 #----------------------------------------------------------------------------------------------
 import requests
 def my_view(request):
-    url = "https://justpetpals.com/api/v1/me"  # Your API endpoint
+    url = "https://www.justpetpals.com/api/v1/me"  # Your API endpoint
     jwt_token=None
     jwt_token = request.GET.get('access_token')
     headers = {
@@ -133,9 +133,7 @@ def createAppointment(request, id_cliente):
         form = AppointmentForm(client_id=id_cliente, data=request.POST)
         if form.is_valid():
             time = form.cleaned_data['time']
-            print(time)
             date = form.cleaned_data['date']
-            print(date)
             vet = form.cleaned_data['vet_id']
             accepted = Appointment.objects.filter(appointment_accepted = False).filter(vet_id=vet).filter(date = date).filter(time = time)
             # print(accepted.first())

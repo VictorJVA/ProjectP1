@@ -16,6 +16,23 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+#------------------------------------
+
+# Security settings
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
+SESSION_COOKIE_SECURE = True  # Ensure session cookies are only sent over HTTPS
+CSRF_COOKIE_SECURE = True  # Ensure CSRF cookies are only sent over HTTPS
+
+# Additional recommended security settings
+SECURE_HSTS_SECONDS = 31536000  # Enable HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
+SECURE_HSTS_PRELOAD = True  # Preload HSTS
+SECURE_BROWSER_XSS_FILTER = True  # Enable the browser's XSS filtering
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent the browser from guessing the content type
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
 #-----------------------------------
 
 
@@ -31,6 +48,9 @@ MEDIA_URL = '/media/'
 
 
 #-------------------------------------------------------
+
+
+
 
 COGNITO_AWS_REGION = 'us-east-2'
 COGNITO_USER_POOL = 'us-east-2_Eo0AL3rU9'
@@ -59,10 +79,11 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 }
 # #--------------------------------------------------------------
+
 # SECURE_SSL_REDIRECT = False
 # SESSION_COOKIE_SECURE = False
 # CSRF_COOKIE_SECURE = False
-ALLOWED_HOSTS = ['107.20.131.186','justpetpals.com', 'localhost']
+ALLOWED_HOSTS = ['107.20.131.186','justpetpals.com', 'localhost',"www.justpetpals.com",]
 AUTH_USER_MODEL = 'Client_User.User'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
