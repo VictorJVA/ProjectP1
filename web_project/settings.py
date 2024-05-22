@@ -31,6 +31,9 @@ MEDIA_URL = '/media/'
 
 
 #-------------------------------------------------------
+SECURE_SSL_REDIRECT = True
+
+
 
 COGNITO_AWS_REGION = 'us-east-2'
 COGNITO_USER_POOL = 'us-east-2_Eo0AL3rU9'
