@@ -29,7 +29,8 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
 SECURE_HSTS_PRELOAD = True  # Preload HSTS
 SECURE_BROWSER_XSS_FILTER = True  # Enable the browser's XSS filtering
 SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent the browser from guessing the content type
-
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 #-----------------------------------
@@ -47,7 +48,7 @@ MEDIA_URL = '/media/'
 
 
 #-------------------------------------------------------
-SECURE_SSL_REDIRECT = True
+
 
 
 
@@ -78,7 +79,7 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 }
 # #--------------------------------------------------------------
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # SECURE_SSL_REDIRECT = False
 # SESSION_COOKIE_SECURE = False
 # CSRF_COOKIE_SECURE = False
