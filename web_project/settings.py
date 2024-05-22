@@ -83,7 +83,7 @@ JWT_AUTH = {
 # SECURE_SSL_REDIRECT = False
 # SESSION_COOKIE_SECURE = False
 # CSRF_COOKIE_SECURE = False
-ALLOWED_HOSTS = ['107.20.131.186','justpetpals.com', 'localhost',"www.justpetpals.com"]
+ALLOWED_HOSTS = ['107.20.131.186','justpetpals.com', 'localhost',"www.justpetpals.com",]
 AUTH_USER_MODEL = 'Client_User.User'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
