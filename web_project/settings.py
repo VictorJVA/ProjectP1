@@ -63,7 +63,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # SECURE_SSL_REDIRECT = False
 # SESSION_COOKIE_SECURE = False
 # CSRF_COOKIE_SECURE = False
-ALLOWED_HOSTS = ['107.20.131.186','justpetpals.com', 'localhost']
+ALLOWED_HOSTS = ['107.20.131.186','justpetpals.com', 'localhost','127.0.0.1']
 AUTH_USER_MODEL = 'Client_User.User'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/

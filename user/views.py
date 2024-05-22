@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 import json, pdb
 from django.http import JsonResponse
 from .forms import AppointmentActionForm,AppointmentForm
@@ -134,3 +134,11 @@ def update_field(request):
     else:
         # Return a JSON response indicating failure if the request method is not POST
         return JsonResponse({'success': False, 'error': 'Invalid request method'})
+    
+
+def vetMe(request, vet_id):
+    vet = Vet.objects.get(pk=vet_id)
+    context = { 
+        'client': vet,
+    }
+    return render(request, 'vetMe.html', context)

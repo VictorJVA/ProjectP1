@@ -9,7 +9,7 @@
       <h3>phone: <span>{{vet.phone}}</span></h3>
       <h3>Average score: <span>{{vet.average_score}}</span></h3>
       <!-- <h3>{{pet.client_id.name}}</h3> -->
-      <a href="#" class="btn">View</a>
+      <a href="{% url 'vetProfile' id_cliente=client.client_id vet_id=vet.vet_id %}" class="btn">View</a>
     </div>
   </div>
   {% endfor%}
