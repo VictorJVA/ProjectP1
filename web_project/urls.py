@@ -56,7 +56,9 @@ urlpatterns = [
     path('appointmentAccept/<int:user_id>/<int:appointment_id>/',user.appointmentAccept,name='appointmentAccept'),
     path('vetcreateappointment/<int:user_id>/',user.createAppointment,name='vetcreateappointment'), 
     path('update-field/', user.update_field, name='update-field'),
-
+    path('vetProfile/<int:id_cliente>/<int:vet_id>',client.vetProfile,name='vetProfile'),
+    path('vetMe/<int:vet_id>',user.vetMe,name='vetMe'),
+    
 ]
 
 urlpatterns += static('/report/',document_root=os.path.join(BASE_DIR,'report'))

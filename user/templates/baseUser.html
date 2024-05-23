@@ -23,7 +23,7 @@
         <img class="user-img" src="{{ client.image.url }}" alt="photo vet" />
         <div>
           <p class="bold">
-            <a href="/appointmentOutside/{{client.vet_id}}">{{client.name}}</a>
+            <a href="/vetMe/{{client.vet_id}}">{{client.name}}</a>
           </p>
           <p>Vet</p>
         </div>
@@ -50,13 +50,13 @@
           </a>
           <span class="tooltip"></span>
         </li>
-        <!-- <li>
-          <a href="#"
+        <li>
+          <a href="/appointmentOutside/{{client.vet_id}}"
             ><i class="bx bxs-like"></i>
-            <span class="nav-item">view ratings</span>
+            <span class="nav-item">view clients</span>
           </a>
-          <span class="tooltip">view ratings</span>
-        </li> -->
+          <span class="tooltip">view clients</span>
+        </li>
 
         <li>
           <a href="#"

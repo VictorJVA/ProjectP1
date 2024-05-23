@@ -164,3 +164,11 @@ def createAppointment(request, id_cliente):
     return render(request, 'createAppointment.html', context)
 
 
+def vetProfile(request, id_cliente, vet_id):
+    vet = Vet.objects.get(pk=vet_id)
+    client = get_object_or_404(Client, pk=id_cliente)
+    context = { 
+        'vet': vet,
+        'client': client,
+    }
+    return render(request, 'vetProfile.html', context)
