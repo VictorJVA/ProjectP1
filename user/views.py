@@ -17,7 +17,7 @@ def backtest(request, appointment):
     if searchAppointment2 and not checkupdate:
         report = Report.objects.filter(appointement_id=searchAppointment).order_by('-report_id').first()
         if(report==None):
-            pet_smth=Medical_history.objects.get(pet_id=searchAppointment2.first().pet_id)
+            pet_smth=Medical_history.objects.get(pet_id=searchAppointment2.pet_id)
             report=Report.objects.create(appointement_id=searchAppointment2,medical_history_id=pet_smth)
         files = File.objects.filter(report_id=report.report_id)
         vet = report.appointement_id.vet_id
