@@ -20,7 +20,7 @@ def PetView(request, client_id, pet_id):
     if(pet.client_id.client_id==client_id):
         pet = Pets.objects.filter(pet_id=pet_id) 
 
-    return render(request, 'clinicalUserView.html', {'pets': pet,'client':client})
+    return render(request, 'clinicalUserView2.html', {'pets': pet,'client':client})
 def my_view(request):
     url = "https://www.justpetpals.com/api/v1/me"  # Your API endpoint
     jwt_token=None
