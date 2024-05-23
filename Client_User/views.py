@@ -10,6 +10,9 @@ from .models import Report,File,Appointment,Client,Vet,Log_in,Pets
 from .forms import ClientForm,Vetform
 
 import requests
+
+def health_check(request):
+    return HttpResponse("OK", status=200)
 def hello_there(request, name):
     print(request.build_absolute_uri()) #optional
     return render(
