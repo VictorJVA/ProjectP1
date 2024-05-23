@@ -7,7 +7,7 @@ from Client_User.models import Report,File,Appointment,Client,Vet,Log_in,Pets,Me
 
 def backtest(request, appointment):
     searchAppointment = appointment
-    searchAppointment2=Appointment.objects.filter(appointment_id=appointment)
+    searchAppointment2=Appointment.objects.filter(appointment_id=appointment).first()
     checkupdate= request.GET.get('checkUpdate')
     files = None
     vet = None
@@ -19,7 +19,6 @@ def backtest(request, appointment):
         if(report==None):
             pet_smth=Medical_history.objects.get(pet_id=searchAppointment2.first().pet_id)
             report=Report.objects.create(appointement_id=searchAppointment2,medical_history_id=pet_smth)
-            report=report[0]
         files = File.objects.filter(report_id=report.report_id)
         vet = report.appointement_id.vet_id
         appointment = report.appointement_id
