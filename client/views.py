@@ -79,6 +79,7 @@ def registerPet(request, id_cliente):
         pet = form.save(commit=False)  # Guarda el formulario pero no lo inserta en la base de datos todavía
         pet.client_id = client  # Asigna el cliente a la mascota
         pet.save()  # Ahora guarda la mascota en la base de datos junto con el cliente
+        Medical_history.objects.create(pet_id=pet)
         return redirect(f'/homeClient/{client.client_id}')
 
 

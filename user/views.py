@@ -14,15 +14,14 @@ def backtest(request, appointment):
     appointment = None
     pet = None
     report = None
-    priority=None
     if searchAppointment2 and not checkupdate:
-        report = Report.objects.filter(appointement_id=searchAppointment).order_by('-report_id')[0]
+        report = Report.objects.filter(appointement_id=searchAppointment).order_by('-report_id').first()
         files = File.objects.filter(report_id=report.report_id)
         vet = report.appointement_id.vet_id
         appointment = report.appointement_id
         pet = appointment.pet_id
     elif checkupdate and searchAppointment2:
-        report = Report.objects.filter(appointement_id=searchAppointment).order_by('-report_id')[0]
+        report = Report.objects.filter(appointement_id=searchAppointment).order_by('-report_id').first()
         files = File.objects.filter(report_id=report.report_id)
         vet = report.appointement_id.vet_id
         appointment = report.appointement_id
