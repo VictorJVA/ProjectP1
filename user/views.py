@@ -19,6 +19,7 @@ def backtest(request, appointment):
         if(report==None):
             pet_smth=Medical_history.objects.get(pet_id=searchAppointment2.first().pet_id)
             report=Report.objects.create(appointement_id=searchAppointment2,medical_history_id=pet_smth)
+            report=report[0]
         files = File.objects.filter(report_id=report.report_id)
         vet = report.appointement_id.vet_id
         appointment = report.appointement_id
