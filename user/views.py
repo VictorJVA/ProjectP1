@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 import json, pdb
 from django.http import JsonResponse
 from .forms import AppointmentActionForm,AppointmentForm
-from Client_User.models import Report,File,Appointment,Client,Vet,Log_in,Pets
+from Client_User.models import Report,File,Appointment,Client,Vet,Log_in,Pets,Medical_history
 
 
 def backtest(request, appointment):
@@ -16,6 +16,9 @@ def backtest(request, appointment):
     report = None
     if searchAppointment2 and not checkupdate:
         report = Report.objects.filter(appointement_id=searchAppointment).order_by('-report_id').first()
+        if(report==None):
+            pet_smth=Medical_history.objects.get(pet_id=searchAppointment2.first().pet_id)
+            report=Report.objects.create(appointement_id=searchAppointment2,medical_history_id=pet_smth)
         files = File.objects.filter(report_id=report.report_id)
         vet = report.appointement_id.vet_id
         appointment = report.appointement_id
