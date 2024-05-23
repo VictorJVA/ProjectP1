@@ -59,7 +59,7 @@ urlpatterns = [
     path('vetProfile/<int:id_cliente>/<int:vet_id>',client.vetProfile,name='vetProfile'),
     path('vetMe/<int:vet_id>',user.vetMe,name='vetMe'),
     path('health/', views.health_check, name='health_check'),
-    path('petView/<int:client_id>/<int:id_pet>/',client.PetView),
+    path('petView/<int:client_id>/<int:pet_id>/',client.PetView),
 ]
 
 urlpatterns += static('/report/',document_root=os.path.join(BASE_DIR,'report'))
