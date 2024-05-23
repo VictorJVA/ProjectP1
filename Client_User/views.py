@@ -12,7 +12,7 @@ from .forms import ClientForm,Vetform
 import requests
 
 def health_check(request):
-    return HttpResponse("200", status=200)
+    return HttpResponse("OK", status=200)
 def hello_there(request, name):
     print(request.build_absolute_uri()) #optional
     return render(

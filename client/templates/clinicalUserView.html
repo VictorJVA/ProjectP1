@@ -1,0 +1,39 @@
+{% extends 'baseClient.html'%} {% block content %}
+<h1>clinical record</h1>
+<!-- {% for pet in pets %} -->
+<div class="pet-card">
+  <div class="pet-info">
+    <img class="pet-img" src="{{ pet.image.url }}" alt="Pet Photo" />
+    <div>
+      <h3>Name: <span>{{ pet.name }}</span></h3>
+      <br />
+      <h3>Breed: <span>{{pet.race}}</span></h3>
+      <br />
+      <h3>Birth Date: <span>{{ pet.birth_date }}</span></h3>
+      <br />
+
+      {%if pet.gender %}
+      <h3>Gender: <span>Male</span></h3>
+      {%else%}
+      <h3>Gender: <span>Female</span></h3>
+      {%endif%}
+      <br />
+      <h3>Allergies: <span>{{ pet.allergies }}</span></h3>
+    </div>
+  </div>
+  <div class="vaccine-cards">
+    <!-- Contenedor grande con fondo blanco -->
+    <div class="vaccine-card-container">
+      <!-- Contenedores pequeños con fondo lightslategrey -->
+      {%for Vaccine in Vaccines%}
+      <div class="vaccine-card">
+        <h3>Vaccine: {{Vaccine.vaccine.vaccine_name}}</h3>
+        <h3>Vaccine Date:{{Vaccine.vaccine_date}}</h3>
+      </div>
+      {%endfor%}
+      <!-- Repite esta estructura para cada tarjeta de vacuna -->
+    </div>
+  </div>
+</div>
+{% endfor %} 
+{% endblock content %}

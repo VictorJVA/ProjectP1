@@ -13,6 +13,14 @@ from web_project.api.UserSerializer import UserSerializer
 
 #----------------------------------------------------------------------------------------------
 import requests
+def PetView(request, client_id, pet_id):
+    pet=Pets.objects.get(pk=pet_id)
+    client=Client.objects.get(client_id=client_id)
+    
+    if(pet_id.client_id.client_id==client_id):
+        pet = Pets.objects.filter(pet_id=pet_id) 
+
+    return render(request, 'clinicalUserView.html', {'pets': pet,'client':client})
 def my_view(request):
     url = "https://www.justpetpals.com/api/v1/me"  # Your API endpoint
     jwt_token=None
