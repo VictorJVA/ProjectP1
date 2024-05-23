@@ -17,7 +17,7 @@ def PetView(request, client_id, pet_id):
     pet=Pets.objects.get(pk=pet_id)
     client=Client.objects.get(client_id=client_id)
     
-    if(pet_id.client_id.client_id==client_id):
+    if(pet.client_id.client_id==client_id):
         pet = Pets.objects.filter(pet_id=pet_id) 
 
     return render(request, 'clinicalUserView.html', {'pets': pet,'client':client})
