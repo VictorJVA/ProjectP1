@@ -9,7 +9,7 @@
       <h3>race: <span>{{pet.race}}</span></h3>
       <h3>Birth date: <span>{{pet.birth_date}}</span></h3>
       <!-- <h3>{{pet.client_id.name}}</h3> -->
-      <a href="#" class="btn">clinical record</a>
+      <a href="/petView/{{client.client_id}}/{{pet.pet_id}}" class="btn">clinical record</a>
     </div>
   </div>
   {% endfor%}
