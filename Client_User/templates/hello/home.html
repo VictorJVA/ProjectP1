@@ -1,7 +1,28 @@
-{% extends "hello/layout.html" %}
+{% extends "hello/layout.html" %}{% load static %}
 {% block title %}
 Home
 {% endblock %}
 {% block content %}
-<p>Home page for the Visual Studio Code Django tutorial.</p>
+<div class="container">
+  <div class="hero">
+    <img src="{% static '../../../../../media/images/logo.png' %}" alt="JustPetPals Logo" class="logo">
+    <h1>Welcome to JustPetPals</h1>
+    <p>Your trusted partner in pet care</p>
+    <a href="https://justpetpal.auth.us-east-2.amazoncognito.com/oauth2/authorize?client_id=7p2b8mhmc946vodo9fvllp7oun&response_type=token&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fwww.justpetpals.com%2Ftest%2F" class="btn-primary">Log In</a>
+  </div>
+  <div class="features">
+    <div class="feature">
+      <h2>Easy Appointments</h2>
+      <p>Book appointments with ease and convenience.</p>
+    </div>
+    <div class="feature">
+      <h2>Expert Veterinarians</h2>
+      <p>Get the best care from our experienced vets.</p>
+    </div>
+    <div class="feature">
+      <h2>24/7 Support</h2>
+      <p>We're here to help, any time, any day.</p>
+    </div>
+  </div>
+</div>
 {% endblock %}

@@ -1,17 +1,36 @@
-{% extends "baseClient.html" %} {% block content %}
-<h1>register pets</h1>
+{% extends "baseClient.html" %}
+
+{% block content %}
+<h1>Register Pets</h1>
 <div class="container-form">
   <form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %} {% for campo in form %}
-    <div class="form">
-      <label for="">{{ campo.label }}: </label>
-      <input
-        class="field"
-        type="{{ campo.field.widget.input_type }}"
-        placeholder="{{ campo.label }}"
-        name="{{ campo.name }}"
-      />
-    </div>
+    {% csrf_token %}
+    {% for campo in form %}
+      <div class="form">
+        <label for="{{ campo.id_for_label }}">{{ campo.label }}:</label>
+        {% if campo.field.widget.input_type == "radio" %}
+          {% for radio in campo %}
+            <div>
+              <input
+                type="radio"
+                name="{{ campo.name }}"
+                id="{{ radio.id_for_label }}"
+                value="{{ radio.choice_value }}"
+                {% if radio.choice_value == campo.value|stringformat:"s" %} checked{% endif %}
+              />
+              <label for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+            </div>
+          {% endfor %}
+        {% else %}
+          <input
+            class="field"
+            type="{{ campo.field.widget.input_type }}"
+            placeholder="{{ campo.label }}"
+            name="{{ campo.name }}"
+            value="{{ campo.value }}"
+          />
+        {% endif %}
+      </div>
     {% endfor %}
     <input type="submit" value="Submit" />
   </form>

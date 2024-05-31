@@ -3,6 +3,10 @@ from Client_User.models import *
 
 class PetForm(forms.ModelForm):
     birth_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    gender = forms.ChoiceField(
+        choices=[(True, 'Male'), (False, 'Female')],
+        widget=forms.RadioSelect
+    )
     class Meta:
         model = Pets
         fields = ['name', 'species', 'race', 'birth_date', 'gender', 'allergies','image']
