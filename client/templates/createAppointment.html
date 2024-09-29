@@ -9,7 +9,9 @@
       {{ form.as_p }}
       {% if accepted %}
       <div>
-        <p style="color: white; background-color:red; border-radius: 4px; padding: 2px; text-align: center; text-transform:uppercase ">This hour in this date is not available</p>
+        <p
+          style="color: white; background-color:red; border-radius: 4px; padding: 2px; text-align: center; text-transform:uppercase ">
+          This hour in this date is not available</p>
       </div>
       {% endif%}
       <button type="submit">Make appointment</button>
@@ -22,8 +24,8 @@
       {% for appointment in appointment%}
       <div class="card-content-appointment">
         <p>Pet Name: <span>{{ appointment.pet_id.name}}</span></p>
-        <p>Date: <span>{{ appointment.date }}</span></p>
         <p>Time: <span>{{ appointment.time }}</span></p>
+        <p>Date: <span>{{ appointment.date }}</span></p>
         <p>Reason appointment: <span>{{ appointment.reason_appointment }}</span></p>
         <br />
         <button class="btn-appointment">see more</button>
