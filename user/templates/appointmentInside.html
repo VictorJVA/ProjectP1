@@ -1,4 +1,4 @@
-{% extends 'baseUser.html'%} 
+{% extends 'baseUser.html'%}
 {% block content %}
 <h1>appointments</h1>
 {% for appointment in appointment %}
@@ -8,11 +8,11 @@
     <button class="btn select-button" data-status="finished">Finished</button>
   </div>
   <div class="card-contento">
+    <h3>Pet Name: <span>{{ appointment.pet_id.name}}</span></h3>
+    <br />
     <h3>Date: <span>{{ appointment.date }}</span></h3>
     <br />
     <h3>Time: <span>{{ appointment.time }}</span></h3>
-    <br />
-    <h3>Pet Name: <span>{{ appointment.pet_id.name}}</span></h3>
     <br />
     <p>Reason: <span>{{ appointment.reason_appointment }}</span></p>
     <br />

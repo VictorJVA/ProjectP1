@@ -22,15 +22,13 @@ from django.urls import include, path
 from Client_User import views as views
 from client import views as client
 from user import views as user
-
 from django.conf.urls.static import static
 from django.conf import settings
-
 from client.views import UserProfileAPIView
 
 urlpatterns = [
-    path("choice/",views.choice),
-    path("test/",client.my_view),
+    path("choices/",views.choice),
+    path("tests/",client.my_view),
     path('api/v1/me', UserProfileAPIView.as_view(), name='my_profile'),
     path("", views.home, name="home"),
     path("hello/<name>", views.hello_there, name="hello_there"),
