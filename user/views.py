@@ -3,46 +3,43 @@ import json, pdb
 from django.http import JsonResponse
 from .forms import AppointmentActionForm,AppointmentForm
 from Client_User.models import Report,File,Appointment,Client,Vet,Log_in,Pets,Medical_history
+from .utils import AppointmentService, ReportService
+
+appointment_service = AppointmentService()
+report_service = ReportService()
 
 
-def backtest(request, appointment):
-    searchAppointment = appointment
-    searchAppointment2=Appointment.objects.filter(appointment_id=appointment).first()
-    checkupdate= request.GET.get('checkUpdate')
-    files = None
-    vet = None
-    appointment = None
-    pet = None
-    report = None
-    if searchAppointment2 and not checkupdate:
-        report = Report.objects.filter(appointement_id=searchAppointment).order_by('-report_id').first()
-        if(report==None):
-            pet_smth=Medical_history.objects.get(pet_id=searchAppointment2.pet_id)
-            report=Report.objects.create(appointement_id=searchAppointment2,medical_history_id=pet_smth)
+def backtest(request, appointment_id):
+    appointment = appointment_service.get_appointment(appointment_id)
+    checkupdate = request.GET.get('checkUpdate')
+    files, vet, pet, report = None, None, None, None
+
+    if appointment and not checkupdate:
+        report = report_service.get_report(appointment_id)
+        if not report:
+            pet_smth = Medical_history.objects.get(pet_id=appointment.pet_id)
+            report = report_service.create_report(appointment, pet_smth)
         files = File.objects.filter(report_id=report.report_id)
-        vet = report.appointement_id.vet_id
-        appointment = report.appointement_id
+        vet = appointment.vet_id
         pet = appointment.pet_id
-    elif checkupdate and searchAppointment2:
-        report = Report.objects.filter(appointement_id=searchAppointment).order_by('-report_id').first()
+    elif checkupdate and appointment:
+        report = report_service.get_report(appointment_id)
         files = File.objects.filter(report_id=report.report_id)
-        vet = report.appointement_id.vet_id
-        appointment = report.appointement_id
+        vet = appointment.vet_id
         pet = appointment.pet_id
-        report2= Report(report.report_id+1,appointment.appointment_id,report.medical_history_id.Medical_history_id,request.GET.get('test'),request.GET.get('diagnosis'),request.GET.get('prescribed_treatment'),request.GET.get('aditional_recomend'),request.GET.get('aditional_notes'),request.GET.get('checkUpdate'))
-        report2.save()
-        report=report2
-    else:
-        report=None
-        vet=None
+        new_report = Report(report.report_id+1, appointment.appointment_id, report.medical_history_id, 
+                            request.GET.get('test'), request.GET.get('diagnosis'), 
+                            request.GET.get('prescribed_treatment'), request.GET.get('aditional_recomend'), 
+                            request.GET.get('aditional_notes'), request.GET.get('checkUpdate'))
+        new_report.save()
+        report = new_report
     return render(request, 'appointment.html', {
-        'searchAppointment': searchAppointment,
+        'appointment': appointment,
         'report': report,
         'files': files,
         'vet': vet,
-        'appointment': appointment,
         'pet': pet,
-        'checkUpdate':checkupdate,
+        'checkUpdate': checkupdate,
     })
 
 def viewPets(request):
