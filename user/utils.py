@@ -1,5 +1,5 @@
 # utils.py
-from .interfaces import IAppointmentService, IVetService, IReportService, IPetService
+from user.interfaces import IAppointmentService, IReportService
 from Client_User.models import Appointment, Vet, Report, Pets, Medical_history
 
 class AppointmentService(IAppointmentService):
